@@ -1,0 +1,132 @@
+/* ========== Apple 皮肤 ========== */
+html[data-skin="apple"] {
+  --primary-color: #007aff;
+  --bg-color: #f2f2f7;
+  --card-bg: #ffffff;
+  --text-primary: #1c1c1e;
+  --text-secondary: #8e8e93;
+  --border-color: #d1d1d6;
+  --sidebar-bg: #f2f2f7;
+  --toolbar-bg: rgba(255, 255, 255, 0.72);
+  --sidebar-radius: 12px;
+  --card-radius: 12px;
+}
+
+html[data-skin="apple"].dark {
+  --bg-color: #000000;
+  --card-bg: #1c1c1e;
+  --text-primary: #f5f5f7;
+  --text-secondary: #8e8e93;
+  --border-color: #38383a;
+  --sidebar-bg: #1c1c1e;
+  --toolbar-bg: rgba(28, 28, 30, 0.72);
+}
+
+html[data-skin="apple"] .main-layout-sidebar {
+  backdrop-filter: blur(20px);
+}
+
+html[data-skin="apple"] .main-layout-toolbar {
+  backdrop-filter: blur(20px);
+}
+
+/* ========== Hero（英雄联盟客户端）皮肤 ========== */
+html[data-skin="hero"] {
+  --primary-color: #c89b3c;
+  --bg-color: #091428;
+  --card-bg: #0a1428;
+  --text-primary: #a09b8c;
+  --text-secondary: #5b5a56;
+  --border-color: #1e2328;
+  --sidebar-bg: #010a13;
+  --toolbar-bg: #0a1428;
+  --hero-gold: #c89b3c;
+  --hero-blue: #0596aa;
+  --hero-dark: #010a13;
+}
+
+html[data-skin="hero"].dark {
+  --bg-color: #010a13;
+  --card-bg: #091428;
+  --sidebar-bg: #010a13;
+  --toolbar-bg: #091428;
+}
+
+html[data-skin="hero"] .main-layout-sidebar {
+  background: linear-gradient(180deg, #010a13 0%, #091428 100%);
+  border-right: 1px solid #1e2328;
+}
+
+html[data-skin="hero"] .main-layout-logo h1 {
+  color: #c89b3c;
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+html[data-skin="hero"] .main-layout-toolbar {
+  background: linear-gradient(90deg, #091428, #0a1428);
+  border-bottom: 1px solid #c89b3c33;
+}
+
+html[data-skin="hero"] .el-menu {
+  background: transparent;
+  border-right: none;
+}
+
+html[data-skin="hero"] .el-menu-item {
+  color: #a09b8c;
+}
+
+html[data-skin="hero"] .el-menu-item:hover {
+  background: #1e282d;
+  color: #c89b3c;
+}
+
+html[data-skin="hero"] .el-menu-item.is-active {
+  color: #c89b3c;
+  background: linear-gradient(90deg, #1e282d, transparent);
+  border-right: 2px solid #c89b3c;
+}
+
+html[data-skin="hero"] .el-sub-menu__title {
+  color: #a09b8c;
+}
+
+html[data-skin="hero"] .el-sub-menu__title:hover {
+  background: #1e282d;
+  color: #c89b3c;
+}
+
+html[data-skin="hero"] .el-card {
+  background: #0a1428;
+  border-color: #1e2328;
+  color: #a09b8c;
+}
+
+html[data-skin="hero"] .el-card__header {
+  border-bottom-color: #1e2328;
+}
+
+html[data-skin="hero"] .question-card-desc {
+  background: #091428;
+}
+
+html[data-skin="hero"] .main-layout-content {
+  background: #091428;
+}
+
+html[data-skin="hero"] .home-view-title {
+  color: #c89b3c;
+  font-family: 'Georgia', serif;
+}
+
+html[data-skin="hero"] .el-descriptions__label {
+  background: #0a1428;
+  color: #5b5a56;
+}
+
+html[data-skin="hero"] .el-descriptions__content {
+  background: #091428;
+  color: #a09b8c;
+}

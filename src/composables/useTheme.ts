@@ -1,34 +1,46 @@
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 export type ThemeMode = 'light' | 'dark'
+export type SkinType = 'default' | 'apple' | 'hero'
 
 const theme = ref<ThemeMode>(
-  (localStorage.getItem('theme-mode') as ThemeMode) || 'light'
+  (localStorage.getItem('theme-mode') as ThemeMode) || 'dark'
+)
+const skin = ref<SkinType>(
+  (localStorage.getItem('theme-skin') as SkinType) || 'hero'
 )
 
-function applyTheme(mode: ThemeMode) {
+function applyAll() {
   const html = document.documentElement
-  if (mode === 'dark') {
-    html.classList.add('dark')
-  } else {
-    html.classList.remove('dark')
-  }
+  html.classList.toggle('dark', theme.value === 'dark')
+  html.dataset.skin = skin.value
 }
 
-applyTheme(theme.value)
+applyAll()
 
 export function useTheme() {
   function setTheme(mode: ThemeMode) {
     theme.value = mode
     localStorage.setItem('theme-mode', mode)
-    applyTheme(mode)
+    applyAll()
   }
 
   function toggleTheme() {
     setTheme(theme.value === 'light' ? 'dark' : 'light')
   }
 
-  watch(theme, applyTheme)
+  function setSkin(s: SkinType) {
+    skin.value = s
+    localStorage.setItem('theme-skin', s)
+    applyAll()
+  }
 
-  return { theme, setTheme, toggleTheme }
+  const skinLabel = computed(() => {
+    return skin.value === 'apple' ? 'Apple' : skin.value === 'hero' ? 'Hero' : 'Default'
+  })
+
+  watch(theme, applyAll)
+  watch(skin, applyAll)
+
+  return { theme, skin, skinLabel, setTheme, toggleTheme, setSkin }
 }

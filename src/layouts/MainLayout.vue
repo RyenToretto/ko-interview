@@ -70,6 +70,18 @@
     </el-aside>
     <el-container direction="vertical" class="main-layout-right">
       <div class="main-layout-toolbar">
+        <el-dropdown @command="setSkin" trigger="click">
+          <el-button size="small">
+            {{ skinLabel }}
+          </el-button>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="default">Default</el-dropdown-item>
+              <el-dropdown-item command="apple">Apple</el-dropdown-item>
+              <el-dropdown-item command="hero">Hero</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
         <el-button
           :icon="theme === 'dark' ? Sunny : Moon"
           circle
@@ -124,7 +136,7 @@ const filteredOpenedMenus = computed(() =>
 )
 
 const { mode, setMode } = useInterviewMode()
-const { theme, toggleTheme } = useTheme()
+const { theme, skin, skinLabel, toggleTheme, setSkin } = useTheme()
 
 function difficultyTagType(d: Difficulty) {
   return d === 'easy' ? 'success' : d === 'medium' ? 'warning' : 'danger'
