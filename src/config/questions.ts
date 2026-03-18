@@ -73,6 +73,7 @@ export const categories: QuestionCategory[] = [
     label: 'TypeScript',
     icon: 'Document',
     questions: [
+      { id: 'ts-flat-to-tree', title: '扁平数组转树形结构', type: 'code', path: '/ts/flat-to-tree' },
       { id: 'ts-basic', title: '基础类型与接口', type: 'code', path: '/ts/basic' },
       { id: 'ts-generics', title: '泛型', type: 'code', path: '/ts/generics' },
       { id: 'ts-utility', title: '类型体操基础', type: 'qa', path: '/ts/utility' },

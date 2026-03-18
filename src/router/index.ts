@@ -187,6 +187,11 @@ const routes: RouteRecordRaw[] = [
       },
       // ========== TypeScript ==========
       {
+        path: 'ts/flat-to-tree',
+        name: 'TsFlatToTree',
+        component: () => import('@/views/typescript/FlatToTree.vue'),
+      },
+      {
         path: 'ts/basic',
         name: 'TsBasic',
         component: () => import('@/views/typescript/BasicTypes.vue'),
