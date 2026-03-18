@@ -4,9 +4,29 @@
       <div class="main-layout-logo">
         <h1>Interview</h1>
       </div>
+      <div class="main-layout-search">
+        <el-input
+          v-model="searchKeyword"
+          placeholder="搜索题目..."
+          clearable
+          size="small"
+          :prefix-icon="Search"
+        />
+        <el-select
+          v-model="filterDifficulty"
+          placeholder="难度"
+          clearable
+          size="small"
+          class="main-layout-filter-select"
+        >
+          <el-option label="简单" value="easy" />
+          <el-option label="中等" value="medium" />
+          <el-option label="困难" value="hard" />
+        </el-select>
+      </div>
       <el-scrollbar class="main-layout-menu-scroll">
         <el-menu
-          :default-openeds="openedMenus"
+          :default-openeds="filteredOpenedMenus"
           :default-active="currentRoute"
           router
         >
@@ -14,36 +34,37 @@
             <el-icon><HomeFilled /></el-icon>
             <span>首页</span>
           </el-menu-item>
-          <el-sub-menu
-            v-for="category in categories"
-            :key="category.id"
-            :index="category.id"
-          >
-            <template #title>
-              <el-icon><component :is="category.icon" /></el-icon>
-              <span>{{ category.label }}</span>
-              <el-badge
-                :value="category.questions.length"
-                type="info"
-                class="main-layout-badge"
-              />
-            </template>
-            <el-menu-item
-              v-for="q in category.questions"
-              :key="q.id"
-              :index="q.path"
+          <template v-for="category in filteredCategories" :key="category.id">
+            <el-sub-menu
+              v-if="category.questions.length"
+              :index="category.id"
             >
-              <span class="main-layout-question-title">{{ q.title }}</span>
-              <el-tag
-                :type="difficultyTagType(q.difficulty)"
-                size="small"
-                class="main-layout-question-tag"
-                effect="plain"
+              <template #title>
+                <el-icon><component :is="category.icon" /></el-icon>
+                <span>{{ category.label }}</span>
+                <el-badge
+                  :value="category.questions.length"
+                  type="info"
+                  class="main-layout-badge"
+                />
+              </template>
+              <el-menu-item
+                v-for="q in category.questions"
+                :key="q.id"
+                :index="q.path"
               >
-                {{ difficultyLabel(q.difficulty) }}
-              </el-tag>
-            </el-menu-item>
-          </el-sub-menu>
+                <span class="main-layout-question-title">{{ q.title }}</span>
+                <el-tag
+                  :type="difficultyTagType(q.difficulty)"
+                  size="small"
+                  class="main-layout-question-tag"
+                  effect="plain"
+                >
+                  {{ difficultyLabel(q.difficulty) }}
+                </el-tag>
+              </el-menu-item>
+            </el-sub-menu>
+          </template>
         </el-menu>
       </el-scrollbar>
     </el-aside>
@@ -65,17 +86,35 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { HomeFilled, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
+import { HomeFilled, Search, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
 import { categories } from '@/config/questions'
+import type { Difficulty } from '@/config/questions'
 import { useInterviewMode } from '@/composables/useInterviewMode'
 
 const route = useRoute()
 const currentRoute = computed(() => route.path)
-const openedMenus = categories.map((c) => c.id)
 
-import type { Difficulty } from '@/config/questions'
+const searchKeyword = ref('')
+const filterDifficulty = ref<Difficulty | ''>('')
+
+const filteredCategories = computed(() => {
+  const keyword = searchKeyword.value.trim().toLowerCase()
+  const diff = filterDifficulty.value
+  return categories.map((cat) => ({
+    ...cat,
+    questions: cat.questions.filter((q) => {
+      const matchKeyword = !keyword || q.title.toLowerCase().includes(keyword)
+      const matchDiff = !diff || q.difficulty === diff
+      return matchKeyword && matchDiff
+    }),
+  }))
+})
+
+const filteredOpenedMenus = computed(() =>
+  filteredCategories.value.filter((c) => c.questions.length).map((c) => c.id)
+)
 
 const { mode, setMode } = useInterviewMode()
 
@@ -119,6 +158,18 @@ const isInterviewerMode = computed({
   font-weight: 600;
   color: var(--primary-color);
   letter-spacing: 2px;
+}
+
+.main-layout-search {
+  padding: 10px 12px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.main-layout-filter-select {
+  width: 100%;
 }
 
 .main-layout-menu-scroll {
