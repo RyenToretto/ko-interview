@@ -1,0 +1,43 @@
+---
+description: Git commit message 规范
+globs:
+  - "**/*"
+---
+
+# Git Commit Message 规范
+
+## 格式
+
+```
+<type>: <中文描述>
+```
+
+## 规则
+
+1. **type 前缀**使用英文小写（如 `feat`、`fix`、`style`、`refactor`、`docs`、`chore`、`perf`、`test`）
+2. **冒号后的描述信息**必须使用**中文**
+3. 不允许纯英文 message（type 部分除外）
+
+## 常用 type
+
+| type | 含义 |
+|------|------|
+| feat | 新功能 |
+| fix | 修复 bug |
+| style | 样式调整（不影响逻辑） |
+| refactor | 重构（不是新功能也不是修复） |
+| docs | 文档变更 |
+| chore | 构建/工具/依赖变更 |
+| perf | 性能优化 |
+| test | 测试相关 |
+
+## 示例
+
+```
+feat: 新增事件循环题目在线练习区
+fix: 修复 QA 题目代码块显示异常
+refactor: 优化所有题目使用 CodeBlock 组件
+docs: 更新项目使用说明文档
+style: 调整侧边栏菜单间距
+chore: 升级 element-plus 到最新版本
+```
