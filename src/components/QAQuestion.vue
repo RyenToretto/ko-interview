@@ -14,7 +14,7 @@
         <el-tag type="primary" size="small">问题 {{ idx + 1 }}</el-tag>
         <span class="qa-question-text" v-html="item.q" />
       </div>
-      <el-collapse v-if="item.a">
+      <el-collapse v-if="item.a && isInterviewer">
         <el-collapse-item title="查看参考答案">
           <div class="qa-question-answer" v-html="item.a" />
         </el-collapse-item>
@@ -27,6 +27,9 @@
 
 <script setup lang="ts">
 import QuestionCard from './QuestionCard.vue'
+import { useInterviewMode } from '@/composables/useInterviewMode'
+
+const { isInterviewer } = useInterviewMode()
 
 defineProps<{
   title: string

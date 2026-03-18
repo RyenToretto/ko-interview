@@ -46,9 +46,20 @@
         </el-menu>
       </el-scrollbar>
     </el-aside>
-    <el-main class="main-layout-content">
-      <router-view />
-    </el-main>
+    <el-container direction="vertical" class="main-layout-right">
+      <div class="main-layout-toolbar">
+        <el-switch
+          v-model="isInterviewerMode"
+          active-text="面试官"
+          inactive-text="候选人"
+          inline-prompt
+          style="--el-switch-on-color: #409eff; --el-switch-off-color: #67c23a"
+        />
+      </div>
+      <el-main class="main-layout-content">
+        <router-view />
+      </el-main>
+    </el-container>
   </el-container>
 </template>
 
@@ -57,10 +68,17 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { HomeFilled, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
 import { categories } from '@/config/questions'
+import { useInterviewMode } from '@/composables/useInterviewMode'
 
 const route = useRoute()
 const currentRoute = computed(() => route.path)
 const openedMenus = categories.map((c) => c.id)
+
+const { mode, setMode } = useInterviewMode()
+const isInterviewerMode = computed({
+  get: () => mode.value === 'interviewer',
+  set: (val: boolean) => setMode(val ? 'interviewer' : 'candidate'),
+})
 </script>
 
 <style scoped>
@@ -110,6 +128,22 @@ const openedMenus = categories.map((c) => c.id)
 
 .main-layout-question-tag {
   margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.main-layout-right {
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-layout-toolbar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
   flex-shrink: 0;
 }
 
