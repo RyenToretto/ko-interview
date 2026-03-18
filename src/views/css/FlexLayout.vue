@@ -29,11 +29,62 @@
       <div class="flex-demo-sticky-content">Content（内容较少时 footer 也在底部）</div>
       <div class="flex-demo-sticky-footer">Footer</div>
     </div>
+    <el-divider>在线练习区</el-divider>
+    <CssRunner
+      title="Flex 三栏布局在线练习"
+      :html="previewHtml"
+      :initial-css="initialCss"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CssRunner from '@/components/CssRunner.vue'
+
+const previewHtml = `<div class="layout">
+  <div class="left">左侧 200px</div>
+  <div class="center">中间自适应</div>
+  <div class="right">右侧 200px</div>
+</div>`
+
+const initialCss = `.layout {
+  /* TODO: 使用 flex 实现三栏布局 */
+  display: flex;
+  height: 200px;
+  border: 2px dashed #67c23a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.left {
+  /* TODO: 固定 200px */
+  width: 200px;
+  background: #67c23a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  /* TODO: 自适应 */
+  flex: 1;
+  background: #e1f3d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right {
+  /* TODO: 固定 200px */
+  width: 200px;
+  background: #67c23a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}`
 </script>
 
 <style scoped>

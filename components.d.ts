@@ -11,6 +11,7 @@ declare module 'vue' {
     CodeBlock: typeof import('./src/components/CodeBlock.vue')['default']
     CodeEditor: typeof import('./src/components/CodeEditor.vue')['default']
     CodeRunner: typeof import('./src/components/CodeRunner.vue')['default']
+    CssRunner: typeof import('./src/components/CssRunner.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']

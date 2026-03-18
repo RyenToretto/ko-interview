@@ -39,11 +39,84 @@
         <el-descriptions-item label="sticky">{{ answers.sticky }}</el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CssRunner
+      title="position 定位在线练习"
+      :html="previewHtml"
+      :initial-css="initialCss"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CssRunner from '@/components/CssRunner.vue'
+
+const previewHtml = `<div class="card">
+  <div class="badge">NEW</div>
+  <p>产品卡片内容</p>
+</div>
+
+<div class="scroll-area">
+  <div class="sticky-header">我是吸顶标题</div>
+  <div class="scroll-content">
+    <p>滚动内容 1</p><p>滚动内容 2</p><p>滚动内容 3</p>
+    <p>滚动内容 4</p><p>滚动内容 5</p><p>滚动内容 6</p>
+    <p>滚动内容 7</p><p>滚动内容 8</p><p>滚动内容 9</p>
+    <p>滚动内容 10</p>
+  </div>
+</div>`
+
+const initialCss = `/* 角标定位 */
+.card {
+  position: relative;
+  width: 200px;
+  height: 120px;
+  border: 2px solid #409eff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  /* TODO: absolute 定位到右上角 */
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f56c6c;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* sticky 吸顶 */
+.scroll-area {
+  height: 180px;
+  overflow-y: auto;
+  border: 2px dashed #67c23a;
+  border-radius: 8px;
+}
+
+.sticky-header {
+  /* TODO: sticky 吸顶 */
+  position: sticky;
+  top: 0;
+  background: #67c23a;
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+
+.scroll-content {
+  padding: 8px 16px;
+}
+
+.scroll-content p {
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}`
 
 // TODO: 请填写各 position 值的区别说明
 const answers = {

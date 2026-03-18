@@ -25,12 +25,50 @@
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区（JS 运行时验证逻辑）</el-divider>
+    <CodeRunner
+      title="泛型逻辑在线验证"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// identity 函数（泛型的 JS 等价）
+function identity(value) { return value }
+console.log('identity(42):', identity(42))
+console.log('identity("hello"):', identity('hello'))
+
+// getProperty（keyof 约束的 JS 等价）
+function getProperty(obj, key) { return obj[key] }
+const person = { name: '张三', age: 25 }
+console.log('getProperty name:', getProperty(person, 'name'))
+console.log('getProperty age:', getProperty(person, 'age'))
+
+// TypedStorage（泛型类的 JS 等价）
+class TypedStorage {
+  constructor() { this.store = new Map() }
+  set(key, value) { this.store.set(key, value) }
+  get(key) { return this.store.get(key) }
+  has(key) { return this.store.has(key) }
+  remove(key) { return this.store.delete(key) }
+  getAll() { return Object.fromEntries(this.store) }
+}
+
+const s = new TypedStorage()
+s.set('a', 1)
+s.set('b', 2)
+console.log('get a:', s.get('a'))
+console.log('has b:', s.has('b'))
+s.remove('a')
+console.log('after remove, has a:', s.has('a'))
+console.log('getAll:', s.getAll())
+`
 
 // ========== 任务1: 泛型 identity 函数 ==========
 // TODO: 实现 identity 函数，接收任意类型参数并返回相同类型

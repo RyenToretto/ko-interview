@@ -25,11 +25,48 @@
     <div class="center-demo-box center-demo-custom">
       <!-- TODO: 请在此处添加需要居中的子元素，并在 style 中编写居中样式 -->
     </div>
+
+    <el-divider>在线练习区</el-divider>
+    <CssRunner
+      title="水平垂直居中在线练习"
+      :html="previewHtml"
+      :initial-css="initialCss"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CssRunner from '@/components/CssRunner.vue'
+
+const previewHtml = `<div class="container">
+  <div class="child">居中我</div>
+</div>`
+
+const initialCss = `.container {
+  width: 100%;
+  height: 240px;
+  border: 2px dashed #409eff;
+  border-radius: 8px;
+  background: #f0f9ff;
+
+  /* TODO: 请写出居中方式，例如 Flex: */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.child {
+  width: 120px;
+  height: 60px;
+  background: #409eff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 14px;
+}`
 </script>
 
 <style scoped>

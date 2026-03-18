@@ -6,11 +6,47 @@
     <template #description>
       <p>本题考察对 JavaScript 原型机制、原型链、继承的深入理解。这是面试中<strong>最高频</strong>的基础题之一。</p>
     </template>
+
+    <template #extra>
+      <el-divider>在线验证区</el-divider>
+      <CodeRunner
+        title="原型链在线验证"
+        :initial-code="playgroundCode"
+      />
+    </template>
   </QAQuestion>
 </template>
 
 <script setup lang="ts">
 import QAQuestion from '@/components/QAQuestion.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 原型链验证
+function Person(name) { this.name = name }
+Person.prototype.greet = function() { return 'Hello, ' + this.name }
+
+const p = new Person('张三')
+console.log('p.__proto__ === Person.prototype:', p.__proto__ === Person.prototype)
+console.log('Person.prototype.constructor === Person:', Person.prototype.constructor === Person)
+console.log('p.greet():', p.greet())
+
+// 原型链查找
+console.log('p.toString:', typeof p.toString, '(来自 Object.prototype)')
+console.log('Object.prototype.__proto__:', Object.prototype.__proto__)
+
+// instanceof 原理
+function myInstanceof(obj, Ctor) {
+  let proto = Object.getPrototypeOf(obj)
+  while (proto) {
+    if (proto === Ctor.prototype) return true
+    proto = Object.getPrototypeOf(proto)
+  }
+  return false
+}
+console.log('myInstanceof(p, Person):', myInstanceof(p, Person))
+console.log('myInstanceof(p, Object):', myInstanceof(p, Object))
+console.log('myInstanceof(p, Array):', myInstanceof(p, Array))
+`
 
 const questions = [
   {

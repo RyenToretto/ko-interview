@@ -23,11 +23,41 @@
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区（JS 运行时验证逻辑）</el-divider>
+    <CodeRunner
+      title="类型逻辑在线验证"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 联合类型 + 类型收窄的 JS 运行时等价
+function getArea(shape) {
+  switch (shape.kind) {
+    case 'circle':
+      return Math.PI * shape.radius ** 2
+    case 'rectangle':
+      return shape.width * shape.height
+    case 'triangle':
+      return (shape.base * shape.height) / 2
+  }
+}
+
+const shapes = [
+  { kind: 'circle', radius: 5 },
+  { kind: 'rectangle', width: 4, height: 6 },
+  { kind: 'triangle', base: 3, height: 8 },
+]
+
+shapes.forEach(s => {
+  console.log(s.kind + ':', getArea(s).toFixed(2))
+})
+`
 
 // ========== 任务1: 定义接口 ==========
 // TODO: 定义 User 接口，包含以下字段：

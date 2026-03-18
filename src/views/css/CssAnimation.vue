@@ -23,11 +23,67 @@
     <div class="animation-demo-area animation-demo-bounce-area">
       <div class="animation-demo-ball"></div>
     </div>
+
+    <el-divider>在线练习区</el-divider>
+    <CssRunner
+      title="CSS 动画在线练习"
+      :html="previewHtml"
+      :initial-css="initialCss"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CssRunner from '@/components/CssRunner.vue'
+
+const previewHtml = `<div style="display:flex;gap:40px;align-items:center;justify-content:center;min-height:220px">
+  <button class="btn">Hover Me</button>
+  <div class="spinner"></div>
+  <div class="ball"></div>
+</div>`
+
+const initialCss = `/* 按钮 hover 过渡 */
+.btn {
+  padding: 12px 32px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background: #409eff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background: #67c23a;
+  transform: scale(1.1);
+}
+
+/* 旋转加载 */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e4e7ed;
+  border-top-color: #409eff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 弹跳球 */
+.ball {
+  width: 36px;
+  height: 36px;
+  background: #f56c6c;
+  border-radius: 50%;
+  animation: bounce 0.6s ease-in-out infinite alternate;
+}
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-60px); }
+}`
 </script>
 
 <style scoped>
