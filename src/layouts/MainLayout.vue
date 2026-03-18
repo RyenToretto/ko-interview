@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { HomeFilled, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
+import { HomeFilled, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
 import { categories } from '@/config/questions'
 
 const route = useRoute()

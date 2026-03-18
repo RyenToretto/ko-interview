@@ -14,6 +14,16 @@ export interface QuestionCategory {
 
 export const categories: QuestionCategory[] = [
   {
+    id: 'html',
+    label: 'HTML',
+    icon: 'Tickets',
+    questions: [
+      { id: 'html-semantic', title: '语义化标签与 HTML5 新特性', type: 'qa', path: '/html/semantic' },
+      { id: 'html-meta-src-href', title: 'meta 标签、src 与 href', type: 'qa', path: '/html/meta-src-href' },
+      { id: 'html-inline-block', title: '行内元素 vs 块级元素', type: 'qa', path: '/html/inline-block' },
+    ],
+  },
+  {
     id: 'css',
     label: 'CSS',
     icon: 'Brush',

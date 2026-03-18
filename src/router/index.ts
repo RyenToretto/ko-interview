@@ -12,6 +12,22 @@ const routes: RouteRecordRaw[] = [
         name: 'Home',
         component: () => import('@/views/HomeView.vue'),
       },
+      // ========== HTML ==========
+      {
+        path: 'html/semantic',
+        name: 'HtmlSemantic',
+        component: () => import('@/views/html/SemanticTags.vue'),
+      },
+      {
+        path: 'html/meta-src-href',
+        name: 'HtmlMetaSrcHref',
+        component: () => import('@/views/html/MetaSrcHref.vue'),
+      },
+      {
+        path: 'html/inline-block',
+        name: 'HtmlInlineBlock',
+        component: () => import('@/views/html/InlineBlock.vue'),
+      },
       // ========== CSS（按必问程度排序）==========
       {
         path: 'css/why-traps',
