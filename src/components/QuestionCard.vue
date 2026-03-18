@@ -8,6 +8,14 @@
       >
         {{ type === 'code' ? '代码题' : '问答题' }}
       </el-tag>
+      <el-tag
+        v-if="currentDifficulty"
+        :type="difficultyType"
+        size="large"
+        effect="plain"
+      >
+        {{ difficultyLabel }}
+      </el-tag>
     </div>
     <el-card class="question-card-desc" shadow="never">
       <template #header>
@@ -22,10 +30,35 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { categories } from '@/config/questions'
+import type { Difficulty } from '@/config/questions'
+
 defineProps<{
   title: string
   type: 'code' | 'qa'
 }>()
+
+const route = useRoute()
+
+const currentDifficulty = computed<Difficulty | null>(() => {
+  for (const cat of categories) {
+    const q = cat.questions.find((q) => q.path === route.path)
+    if (q) return q.difficulty
+  }
+  return null
+})
+
+const difficultyType = computed(() => {
+  const d = currentDifficulty.value
+  return d === 'easy' ? 'success' : d === 'medium' ? 'warning' : 'danger'
+})
+
+const difficultyLabel = computed(() => {
+  const d = currentDifficulty.value
+  return d === 'easy' ? '简单' : d === 'medium' ? '中等' : '困难'
+})
 </script>
 
 <style scoped>

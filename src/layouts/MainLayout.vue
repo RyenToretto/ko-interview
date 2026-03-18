@@ -35,11 +35,12 @@
             >
               <span class="main-layout-question-title">{{ q.title }}</span>
               <el-tag
-                :type="q.type === 'code' ? 'success' : 'warning'"
+                :type="difficultyTagType(q.difficulty)"
                 size="small"
                 class="main-layout-question-tag"
+                effect="plain"
               >
-                {{ q.type === 'code' ? '代码' : '问答' }}
+                {{ difficultyLabel(q.difficulty) }}
               </el-tag>
             </el-menu-item>
           </el-sub-menu>
@@ -74,7 +75,17 @@ const route = useRoute()
 const currentRoute = computed(() => route.path)
 const openedMenus = categories.map((c) => c.id)
 
+import type { Difficulty } from '@/config/questions'
+
 const { mode, setMode } = useInterviewMode()
+
+function difficultyTagType(d: Difficulty) {
+  return d === 'easy' ? 'success' : d === 'medium' ? 'warning' : 'danger'
+}
+
+function difficultyLabel(d: Difficulty) {
+  return d === 'easy' ? '简单' : d === 'medium' ? '中等' : '困难'
+}
 const isInterviewerMode = computed({
   get: () => mode.value === 'interviewer',
   set: (val: boolean) => setMode(val ? 'interviewer' : 'candidate'),
