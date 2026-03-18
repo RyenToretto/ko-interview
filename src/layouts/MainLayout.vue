@@ -2,7 +2,7 @@
   <el-container class="main-layout">
     <el-aside class="main-layout-sidebar" width="260px">
       <div class="main-layout-logo">
-        <h1>前端面试考察</h1>
+        <h1>Interview</h1>
       </div>
       <el-scrollbar class="main-layout-menu-scroll">
         <el-menu

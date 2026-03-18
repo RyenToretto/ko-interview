@@ -1,7 +1,7 @@
 <template>
   <div class="home-view">
     <div class="home-view-hero">
-      <h1 class="home-view-title">前端面试考察系统</h1>
+      <h1 class="home-view-title">Interview</h1>
       <p class="home-view-subtitle">
         请从左侧菜单选择题目开始作答，候选人可直接在项目代码中编写实现
       </p>
