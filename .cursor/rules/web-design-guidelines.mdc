@@ -1,0 +1,51 @@
+---
+description: Vercel Web Interface Guidelines - UI 代码质量审查规则
+globs:
+  - "src/**/*.vue"
+  - "src/**/*.css"
+  - "src/**/*.ts"
+---
+
+# Web Interface Guidelines (Vercel)
+
+## Accessibility (CRITICAL)
+- Icon-only buttons need `aria-label`
+- Form controls need `<label>` or `aria-label`
+- Interactive elements need keyboard handlers
+- `<button>` for actions, `<a>`/`<Link>` for navigation (not `<div>`)
+- Images need `alt` (or `alt=""` if decorative)
+- Decorative icons need `aria-hidden="true"`
+- Headings hierarchical h1-h6; include skip link for main content
+
+## Focus States
+- Interactive elements need visible focus: `focus-visible:ring-*`
+- Never `outline-none` without focus replacement
+- Use `:focus-visible` over `:focus`
+
+## Animation
+- Honor `prefers-reduced-motion`
+- Animate `transform`/`opacity` only (compositor-friendly)
+- Never `transition: all` -- list properties explicitly
+- Animations must be interruptible
+
+## Typography
+- `font-variant-numeric: tabular-nums` for number columns
+- Use `text-wrap: balance` or `text-pretty` on headings
+- Loading states end with `...`
+
+## Performance
+- Large lists (>50 items): virtualize
+- No layout reads in render
+- Add `<link rel="preconnect">` for CDN domains
+- Critical fonts: `<link rel="preload">` with `font-display: swap`
+
+## Dark Mode
+- `color-scheme: dark` on `<html>` for dark themes
+- Native `<select>`: explicit background-color and color
+
+## Anti-patterns (AVOID)
+- `transition: all`
+- `outline-none` without focus-visible replacement
+- Images without dimensions
+- Icon buttons without `aria-label`
+- Hardcoded date/number formats (use `Intl.*`)

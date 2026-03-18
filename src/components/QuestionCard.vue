@@ -81,7 +81,7 @@ const difficultyLabel = computed(() => {
 
 .question-card-desc {
   margin-bottom: 24px;
-  background: #f8f9fa;
+  background: var(--card-bg-secondary);
 }
 
 .question-card-desc-title {

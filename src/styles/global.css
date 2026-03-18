@@ -1,24 +1,64 @@
 :root {
   --sidebar-width: 260px;
   --header-height: 60px;
+
   --primary-color: #409eff;
   --bg-color: #f5f7fa;
   --card-bg: #ffffff;
+  --card-bg-secondary: #f8f9fa;
   --text-primary: #303133;
   --text-secondary: #606266;
   --border-color: #e4e7ed;
   --sidebar-bg: #ffffff;
   --toolbar-bg: #ffffff;
+
+  --code-bg: #1e1e2e;
+  --code-text: #cdd6f4;
+  --code-border: #313244;
+  --code-header-bg: #1e1e2e;
+  --code-output-bg: #181825;
+  --code-output-body-bg: #11111b;
+
+  --tag-success-bg: #f0f9eb;
+  --tag-success-text: #67c23a;
+  --tag-warning-bg: #fdf6ec;
+  --tag-warning-text: #e6a23c;
+  --tag-danger-bg: #fef0f0;
+  --tag-danger-text: #f56c6c;
+
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: #c0c4cc;
+  --scrollbar-thumb-hover: #909399;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 250ms ease-out;
 }
 
 html.dark {
   --bg-color: #141414;
   --card-bg: #1d1e1f;
+  --card-bg-secondary: #262727;
   --text-primary: #e5eaf3;
   --text-secondary: #a3a6ad;
   --border-color: #414243;
   --sidebar-bg: #1d1e1f;
   --toolbar-bg: #1d1e1f;
+
+  --scrollbar-thumb: #4a4a4a;
+  --scrollbar-thumb-hover: #606060;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
   color-scheme: dark;
 }
 
@@ -34,10 +74,45 @@ html, body, #app {
     'Microsoft YaHei', Arial, sans-serif;
   color: var(--text-primary);
   background-color: var(--bg-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button, a, [role="button"], .el-menu-item, .el-button {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

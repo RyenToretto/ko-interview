@@ -83,8 +83,8 @@ function handleReset() {
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
-  background: #1e1e2e;
-  color: #cdd6f4;
+  background: var(--code-header-bg);
+  color: var(--code-text);
 }
 
 .css-runner-title {
@@ -114,7 +114,7 @@ function handleReset() {
 
 .css-runner-pane-label {
   padding: 4px 12px;
-  background: #181825;
+  background: var(--code-output-bg);
   color: #a6adc8;
   font-size: 12px;
   font-weight: 600;

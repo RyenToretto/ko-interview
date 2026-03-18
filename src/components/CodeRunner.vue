@@ -106,8 +106,8 @@ function handleReset() {
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
-  background: #1e1e2e;
-  color: #cdd6f4;
+  background: var(--code-header-bg);
+  color: var(--code-text);
 }
 
 .code-runner-title {
@@ -116,7 +116,7 @@ function handleReset() {
 }
 
 .code-runner-output {
-  border-top: 1px solid #313244;
+  border-top: 1px solid var(--code-border);
 }
 
 .code-runner-output-header {
@@ -124,14 +124,15 @@ function handleReset() {
   justify-content: space-between;
   align-items: center;
   padding: 6px 12px;
-  background: #181825;
-  color: #a6adc8;
+  background: var(--code-output-bg);
+  color: var(--code-text);
   font-size: 13px;
+  opacity: 0.8;
 }
 
 .code-runner-output-body {
-  background: #11111b;
-  color: #cdd6f4;
+  background: var(--code-output-body-bg);
+  color: var(--code-text);
   padding: 8px 12px;
   min-height: 60px;
   max-height: 200px;

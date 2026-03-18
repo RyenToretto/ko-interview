@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import './styles/global.css'
 import './styles/skins.css'
+import './styles/skins-hero.css'
 
 const app = createApp(App)
 app.use(router)

@@ -1,0 +1,532 @@
+/* ================================================================
+   Hero 皮肤 — 英雄联盟客户端风格
+   色彩体系: 金色 #c89b3c / 亮金 #f0e6d2 / 蓝色 #0596aa
+   背景体系: 极深蓝 #010a13 / 深蓝 #091428 / 面板蓝 #0a1428
+   边框体系: 暗框 #1e2328 / 金色半透 #c89b3c33 / 金色 #c89b3c
+   ================================================================ */
+
+/* ---------- CSS 变量覆盖 ---------- */
+html[data-skin="hero"],
+html[data-skin="hero"].dark {
+  --primary-color: #c89b3c;
+  --bg-color: #091428;
+  --card-bg: #0a1428;
+  --card-bg-secondary: #0d1b2a;
+  --text-primary: #a09b8c;
+  --text-secondary: #5b5a56;
+  --border-color: #1e2328;
+  --sidebar-bg: #010a13;
+  --toolbar-bg: #091428;
+
+  --code-bg: #010a13;
+  --code-text: #c8aa6e;
+  --code-border: #1e2328;
+  --code-header-bg: #010a13;
+  --code-output-bg: #010a13;
+  --code-output-body-bg: #010a13;
+
+  --scrollbar-track: #010a13;
+  --scrollbar-thumb: #1e2328;
+  --scrollbar-thumb-hover: #c89b3c66;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
+
+  --hero-gold: #c89b3c;
+  --hero-gold-light: #f0e6d2;
+  --hero-gold-dim: #785a28;
+  --hero-blue: #0596aa;
+  --hero-blue-light: #0ac8b9;
+  --hero-dark: #010a13;
+  --hero-panel: #0a1428;
+  --hero-border: #1e2328;
+  --hero-glow: rgba(200, 155, 60, 0.3);
+}
+
+/* ---------- 侧边栏 ---------- */
+html[data-skin="hero"] .main-layout-sidebar {
+  background: linear-gradient(180deg, #010a13 0%, #091428 50%, #010a13 100%);
+  border-right: 1px solid var(--hero-border);
+  position: relative;
+}
+
+html[data-skin="hero"] .main-layout-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--hero-gold) 50%, transparent);
+  opacity: 0.4;
+}
+
+/* Logo 区域 */
+html[data-skin="hero"] .main-layout-logo {
+  border-bottom: 1px solid var(--hero-border);
+  position: relative;
+  background: linear-gradient(180deg, #0d1b2a, #010a13);
+}
+
+html[data-skin="hero"] .main-layout-logo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hero-gold), transparent);
+}
+
+html[data-skin="hero"] .main-layout-logo h1 {
+  color: transparent;
+  background: linear-gradient(180deg, #f0e6d2, #c89b3c, #785a28);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-size: 20px;
+}
+
+/* 搜索区 */
+html[data-skin="hero"] .main-layout-search {
+  border-bottom: 1px solid var(--hero-border);
+}
+
+html[data-skin="hero"] .main-layout-search .el-input__wrapper {
+  background: #0d1b2a;
+  border: 1px solid var(--hero-border);
+  box-shadow: none;
+}
+
+html[data-skin="hero"] .main-layout-search .el-input__wrapper:hover {
+  border-color: var(--hero-gold-dim);
+}
+
+html[data-skin="hero"] .main-layout-search .el-input__wrapper.is-focus {
+  border-color: var(--hero-gold);
+  box-shadow: 0 0 8px var(--hero-glow);
+}
+
+html[data-skin="hero"] .main-layout-search .el-input__inner {
+  color: var(--hero-gold-light);
+}
+
+html[data-skin="hero"] .main-layout-search .el-select .el-input__wrapper {
+  background: #0d1b2a;
+  border: 1px solid var(--hero-border);
+  box-shadow: none;
+}
+
+/* 菜单 */
+html[data-skin="hero"] .el-menu {
+  background: transparent;
+  border-right: none;
+}
+
+html[data-skin="hero"] .el-sub-menu__title {
+  color: #a09b8c;
+  border-bottom: 1px solid #1e232800;
+  transition: all var(--transition-fast);
+}
+
+html[data-skin="hero"] .el-sub-menu__title:hover {
+  background: linear-gradient(90deg, #1e282d, transparent);
+  color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-sub-menu.is-opened > .el-sub-menu__title {
+  color: var(--hero-gold);
+  border-bottom-color: #1e2328;
+}
+
+html[data-skin="hero"] .el-menu-item {
+  color: #5b5a56;
+  position: relative;
+  transition: all var(--transition-fast);
+  border-left: 3px solid transparent;
+  margin-left: 0;
+}
+
+html[data-skin="hero"] .el-menu-item:hover {
+  background: linear-gradient(90deg, rgba(200, 155, 60, 0.08), transparent);
+  color: #a09b8c;
+  border-left-color: var(--hero-gold-dim);
+}
+
+html[data-skin="hero"] .el-menu-item.is-active {
+  color: var(--hero-gold-light);
+  background: linear-gradient(90deg, rgba(200, 155, 60, 0.15), transparent);
+  border-left-color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-menu-item.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--hero-gold);
+  box-shadow: 0 0 8px var(--hero-glow);
+  border-radius: 0 2px 2px 0;
+}
+
+/* ---------- 工具栏 ---------- */
+html[data-skin="hero"] .main-layout-toolbar {
+  background: linear-gradient(90deg, #091428, #0d1b2a, #091428);
+  border-bottom: none;
+  position: relative;
+}
+
+html[data-skin="hero"] .main-layout-toolbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hero-gold), transparent);
+  opacity: 0.5;
+}
+
+html[data-skin="hero"] .main-layout-toolbar .el-button {
+  color: var(--hero-gold);
+  border-color: var(--hero-gold-dim);
+  background: transparent;
+}
+
+html[data-skin="hero"] .main-layout-toolbar .el-button:hover {
+  color: var(--hero-gold-light);
+  border-color: var(--hero-gold);
+  background: rgba(200, 155, 60, 0.1);
+  box-shadow: 0 0 12px var(--hero-glow);
+}
+
+html[data-skin="hero"] .main-layout-toolbar .el-switch__core {
+  border-color: var(--hero-gold-dim);
+}
+
+/* ---------- 内容区 ---------- */
+html[data-skin="hero"] .main-layout-content {
+  background: linear-gradient(135deg, #091428 0%, #0a1e36 50%, #091428 100%);
+}
+
+/* ---------- 卡片 ---------- */
+html[data-skin="hero"] .el-card {
+  background: var(--hero-panel);
+  border: 1px solid var(--hero-border);
+  color: #a09b8c;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+html[data-skin="hero"] .el-card:hover {
+  border-color: rgba(200, 155, 60, 0.3);
+  box-shadow: 0 0 16px rgba(200, 155, 60, 0.08);
+}
+
+html[data-skin="hero"] .el-card__header {
+  border-bottom: 1px solid var(--hero-border);
+  color: var(--hero-gold);
+  position: relative;
+}
+
+html[data-skin="hero"] .el-card__header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hero-gold) 50%, transparent);
+  opacity: 0.3;
+}
+
+/* ---------- 题目卡片 ---------- */
+html[data-skin="hero"] .question-card-desc {
+  background: #0d1b2a;
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .question-card-title {
+  color: var(--hero-gold-light);
+  font-family: 'Georgia', serif;
+}
+
+/* ---------- 标签 ---------- */
+html[data-skin="hero"] .el-tag {
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .el-tag--success {
+  background: rgba(5, 150, 170, 0.15);
+  border-color: rgba(5, 150, 170, 0.3);
+  color: var(--hero-blue-light);
+}
+
+html[data-skin="hero"] .el-tag--warning {
+  background: rgba(200, 155, 60, 0.15);
+  border-color: rgba(200, 155, 60, 0.3);
+  color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-tag--danger {
+  background: rgba(210, 60, 60, 0.15);
+  border-color: rgba(210, 60, 60, 0.3);
+  color: #e84057;
+}
+
+html[data-skin="hero"] .el-tag--primary {
+  background: rgba(200, 155, 60, 0.12);
+  border-color: rgba(200, 155, 60, 0.25);
+  color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-tag--info {
+  background: rgba(160, 155, 140, 0.1);
+  border-color: var(--hero-border);
+  color: #a09b8c;
+}
+
+/* ---------- 按钮 ---------- */
+html[data-skin="hero"] .el-button--primary {
+  background: linear-gradient(180deg, #1e2328, #091428);
+  border: 1px solid var(--hero-gold);
+  color: var(--hero-gold);
+  transition: all var(--transition-fast);
+}
+
+html[data-skin="hero"] .el-button--primary:hover {
+  background: linear-gradient(180deg, var(--hero-gold), var(--hero-gold-dim));
+  color: #010a13;
+  box-shadow: 0 0 16px var(--hero-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+html[data-skin="hero"] .el-button--success {
+  background: transparent;
+  border-color: var(--hero-blue);
+  color: var(--hero-blue-light);
+}
+
+html[data-skin="hero"] .el-button--success:hover {
+  background: rgba(5, 150, 170, 0.2);
+  box-shadow: 0 0 12px rgba(5, 150, 170, 0.3);
+}
+
+html[data-skin="hero"] .el-button--warning {
+  background: transparent;
+  border-color: var(--hero-gold-dim);
+  color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-button--danger {
+  background: transparent;
+  border-color: #e84057;
+  color: #e84057;
+}
+
+/* ---------- 描述列表 ---------- */
+html[data-skin="hero"] .el-descriptions__label {
+  background: #0d1b2a;
+  color: var(--hero-gold-dim);
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .el-descriptions__content {
+  background: var(--hero-panel);
+  color: #a09b8c;
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .el-descriptions__body .el-descriptions__table {
+  border-color: var(--hero-border);
+}
+
+/* ---------- 折叠面板 ---------- */
+html[data-skin="hero"] .el-collapse {
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .el-collapse-item__header {
+  background: transparent;
+  color: var(--hero-gold-dim);
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .el-collapse-item__wrap {
+  background: transparent;
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .el-collapse-item__content {
+  color: #a09b8c;
+}
+
+/* ---------- 输入框 ---------- */
+html[data-skin="hero"] .el-input__wrapper {
+  background: #0d1b2a;
+  box-shadow: 0 0 0 1px var(--hero-border) inset;
+}
+
+html[data-skin="hero"] .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--hero-gold-dim) inset;
+}
+
+html[data-skin="hero"] .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--hero-gold) inset;
+}
+
+html[data-skin="hero"] .el-input__inner {
+  color: var(--hero-gold-light);
+}
+
+/* ---------- 下拉菜单 ---------- */
+html[data-skin="hero"] .el-dropdown-menu {
+  background: #0d1b2a;
+  border: 1px solid var(--hero-border);
+}
+
+html[data-skin="hero"] .el-dropdown-menu__item {
+  color: #a09b8c;
+}
+
+html[data-skin="hero"] .el-dropdown-menu__item:hover {
+  background: rgba(200, 155, 60, 0.1);
+  color: var(--hero-gold);
+}
+
+/* ---------- 开关 ---------- */
+html[data-skin="hero"] .el-switch.is-checked .el-switch__core {
+  border-color: var(--hero-gold);
+  background-color: var(--hero-gold);
+}
+
+/* ---------- 时间线 ---------- */
+html[data-skin="hero"] .el-timeline-item__node {
+  background: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-timeline-item__tail {
+  border-left-color: var(--hero-border);
+}
+
+/* ---------- 分割线 ---------- */
+html[data-skin="hero"] .el-divider__text {
+  background: var(--hero-panel);
+  color: var(--hero-gold-dim);
+}
+
+html[data-skin="hero"] .el-divider {
+  border-color: var(--hero-border);
+}
+
+/* ---------- Badge ---------- */
+html[data-skin="hero"] .el-badge__content {
+  background: var(--hero-gold);
+  border-color: var(--hero-panel);
+  color: #010a13;
+}
+
+/* ---------- 首页 ---------- */
+html[data-skin="hero"] .home-view-title {
+  color: transparent;
+  background: linear-gradient(180deg, #f0e6d2, #c89b3c, #785a28);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 36px;
+  letter-spacing: 4px;
+}
+
+html[data-skin="hero"] .home-view-subtitle {
+  color: #5b5a56;
+}
+
+html[data-skin="hero"] .home-view-stat-card {
+  border: 1px solid var(--hero-border);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+html[data-skin="hero"] .home-view-stat-card:hover {
+  border-color: rgba(200, 155, 60, 0.4);
+  box-shadow: 0 0 20px rgba(200, 155, 60, 0.1);
+}
+
+html[data-skin="hero"] .home-view-stat-number {
+  color: var(--hero-gold);
+}
+
+/* ---------- 代码编辑器 ---------- */
+html[data-skin="hero"] .code-runner {
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .code-runner-header {
+  background: linear-gradient(90deg, #010a13, #0d1b2a);
+  border-bottom: 1px solid var(--hero-border);
+}
+
+html[data-skin="hero"] .code-runner-title {
+  color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .css-runner {
+  border-color: var(--hero-border);
+}
+
+html[data-skin="hero"] .css-runner-header {
+  background: linear-gradient(90deg, #010a13, #0d1b2a);
+}
+
+html[data-skin="hero"] .css-runner-title {
+  color: var(--hero-gold);
+}
+
+/* ---------- 选择器下拉面板（弹出层） ---------- */
+html[data-skin="hero"] .el-select-dropdown {
+  background: #0d1b2a;
+  border: 1px solid var(--hero-border);
+}
+
+html[data-skin="hero"] .el-select-dropdown__item {
+  color: #a09b8c;
+}
+
+html[data-skin="hero"] .el-select-dropdown__item.hover,
+html[data-skin="hero"] .el-select-dropdown__item:hover {
+  background: rgba(200, 155, 60, 0.1);
+  color: var(--hero-gold);
+}
+
+html[data-skin="hero"] .el-select-dropdown__item.selected {
+  color: var(--hero-gold);
+}
+
+/* ---------- 弹出提示框 ---------- */
+html[data-skin="hero"] .el-popper.is-light {
+  background: #0d1b2a;
+  border: 1px solid var(--hero-border);
+  color: #a09b8c;
+}
+
+/* ---------- 微光纹理叠加 ---------- */
+html[data-skin="hero"] .main-layout-content::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(200, 155, 60, 0.01) 2px,
+    rgba(200, 155, 60, 0.01) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}

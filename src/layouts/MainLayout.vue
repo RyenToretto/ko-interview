@@ -86,6 +86,7 @@
           :icon="theme === 'dark' ? Sunny : Moon"
           circle
           size="small"
+          :aria-label="theme === 'dark' ? '切换亮色模式' : '切换暗色模式'"
           @click="toggleTheme"
         />
         <el-switch

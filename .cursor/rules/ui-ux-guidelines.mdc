@@ -1,0 +1,65 @@
+---
+description: UI/UX Pro Max 设计规则 - 视觉质量和交互体验
+globs:
+  - "src/**/*.vue"
+  - "src/**/*.css"
+---
+
+# UI/UX Pro Max Guidelines
+
+## Priority 1: Accessibility (CRITICAL)
+- Color contrast minimum 4.5:1 for text, 3:1 for large text
+- Visible focus rings on interactive elements (2-4px)
+- Alt text for meaningful images
+- Color must not be the only indicator (add icon/text)
+
+## Priority 2: Touch & Interaction (CRITICAL)
+- Min touch target 44x44px (iOS) / 48x48dp (Android)
+- Min 8px spacing between touch targets
+- Use click/tap for primary interactions, don't rely on hover alone
+- Disable button during async; show spinner/progress
+- `touch-action: manipulation` to reduce 300ms delay
+- Visual feedback on press within 100ms
+
+## Priority 3: Performance (HIGH)
+- WebP/AVIF images, lazy load non-critical
+- Reserve space for async content (CLS < 0.1)
+- Skeleton screens instead of long spinners
+- Debounce/throttle high-frequency events
+
+## Priority 4: Style (HIGH)
+- Consistent style across all pages
+- SVG icons, not emojis
+- One primary CTA per screen
+- Consistent elevation/shadow scale
+- Design light/dark variants together
+
+## Priority 5: Layout (HIGH)
+- Mobile-first breakpoints (375/768/1024/1440)
+- 4pt/8dp spacing system
+- No horizontal scroll on mobile
+- Consistent max-width on desktop
+
+## Priority 6: Typography & Color (MEDIUM)
+- Base 16px, line-height 1.5-1.75
+- Semantic color tokens, not raw hex in components
+- Font-weight hierarchy: Bold(600-700) headings, Regular(400) body
+- Dark mode: desaturated/lighter tonal variants
+
+## Priority 7: Animation (MEDIUM)
+- Duration 150-300ms for micro-interactions
+- Use transform/opacity only; avoid animating width/height
+- ease-out for entering, ease-in for exiting
+- Exit animations shorter than enter (~60-70%)
+- Respect prefers-reduced-motion
+
+## Priority 8: Forms (MEDIUM)
+- Visible label per input (not placeholder-only)
+- Error placement below the related field
+- Disabled elements: reduced opacity (0.38-0.5)
+- Inline validation on blur, not keystroke
+
+## Priority 9: Navigation (HIGH)
+- Current location visually highlighted
+- Modals must offer clear close affordance
+- Back navigation preserves scroll/state

@@ -63,8 +63,8 @@ defineProps<{
 
 .qa-question-text :deep(pre),
 .qa-question-answer :deep(pre) {
-  background: #1e1e2e;
-  color: #cdd6f4;
+  background: var(--code-bg);
+  color: var(--code-text);
   padding: 12px 16px;
   border-radius: 6px;
   font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
