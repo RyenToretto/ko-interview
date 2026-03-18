@@ -14,6 +14,11 @@ const routes: RouteRecordRaw[] = [
       },
       // ========== CSS（按必问程度排序）==========
       {
+        path: 'css/why-traps',
+        name: 'CssWhyTraps',
+        component: () => import('@/views/css/CssWhyTraps.vue'),
+      },
+      {
         path: 'css/box-model',
         name: 'CssBoxModel',
         component: () => import('@/views/css/BoxModel.vue'),

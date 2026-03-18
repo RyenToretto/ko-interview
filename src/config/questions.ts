@@ -18,6 +18,7 @@ export const categories: QuestionCategory[] = [
     label: 'CSS',
     icon: 'Brush',
     questions: [
+      { id: 'css-why-traps', title: 'CSS 经典「为什么」陷阱', type: 'qa', path: '/css/why-traps' },
       { id: 'css-box-model', title: '盒模型与 BFC', type: 'qa', path: '/css/box-model' },
       { id: 'css-center', title: '水平垂直居中', type: 'code', path: '/css/center' },
       { id: 'css-flex', title: 'Flex 弹性布局', type: 'code', path: '/css/flex' },
