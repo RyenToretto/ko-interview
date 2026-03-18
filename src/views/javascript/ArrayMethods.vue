@@ -40,11 +40,49 @@
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="数组方法在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `const users = [
+  { name: '张三', age: 25, score: 88 },
+  { name: '李四', age: 30, score: 72 },
+  { name: '王五', age: 22, score: 95 },
+  { name: '赵六', age: 28, score: 60 },
+  { name: '孙七', age: 35, score: 83 },
+]
+
+// 1. filter: 筛选 age > 25
+console.log('filter:', users.filter(u => u.age > 25))
+
+// 2. map: 提取名称
+console.log('map:', users.map(u => u.name))
+
+// 3. reduce: 平均分
+const avg = users.reduce((sum, u) => sum + u.score, 0) / users.length
+console.log('reduce 平均分:', avg)
+
+// 4. find
+console.log('find:', users.find(u => u.name === '王五'))
+
+// 5. some
+console.log('some 不及格:', users.some(u => u.score < 70))
+
+// 6. every
+console.log('every 成年:', users.every(u => u.age >= 18))
+
+// 7. sort（不修改原数组）
+console.log('sort:', [...users].sort((a, b) => b.score - a.score))
+`
 
 const users = [
   { name: '张三', age: 25, score: 88 },

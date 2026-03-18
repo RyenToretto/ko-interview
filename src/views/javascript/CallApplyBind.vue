@@ -25,12 +25,59 @@
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="手写 call/apply/bind 在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 手写 myCall
+Function.prototype.myCall = function(ctx, ...args) {
+  ctx = ctx || globalThis
+  const key = Symbol()
+  ctx[key] = this
+  const result = ctx[key](...args)
+  delete ctx[key]
+  return result
+}
+
+// 手写 myApply
+Function.prototype.myApply = function(ctx, args = []) {
+  ctx = ctx || globalThis
+  const key = Symbol()
+  ctx[key] = this
+  const result = ctx[key](...args)
+  delete ctx[key]
+  return result
+}
+
+// 手写 myBind
+Function.prototype.myBind = function(ctx, ...preArgs) {
+  const fn = this
+  return function(...args) {
+    return fn.apply(ctx, [...preArgs, ...args])
+  }
+}
+
+// 测试
+function greet(greeting, punct) {
+  return greeting + ', ' + this.name + punct
+}
+const person = { name: '张三' }
+
+console.log('myCall:', greet.myCall(person, 'Hello', '!'))
+console.log('myApply:', greet.myApply(person, ['Hi', '~']))
+const bound = greet.myBind(person, '你好')
+console.log('myBind:', bound('！'))
+`
 
 // TODO: 实现 myCall
 // 原理：将函数作为目标对象的临时方法调用，然后删除

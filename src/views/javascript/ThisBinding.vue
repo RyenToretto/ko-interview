@@ -45,12 +45,57 @@ obj.greet() // 输出 "Hello, undefined"</pre>
       <el-button type="warning" @click="runFixedGreet">运行修复版本</el-button>
       <p style="margin-top: 12px">{{ greetResult }}</p>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="this 指向在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 1. 方法调用
+const obj = {
+  name: 'obj',
+  getName() { return this.name }
+}
+console.log('方法调用:', obj.getName())
+
+// 2. 函数赋值后 this 丢失
+const fn = obj.getName
+console.log('赋值后:', typeof fn() === 'undefined' ? 'undefined(this丢失)' : fn())
+
+// 3. 箭头函数
+const obj2 = {
+  name: 'obj2',
+  getName: () => '箭头函数没有自己的this'
+}
+console.log('箭头函数:', obj2.getName())
+
+// 4. call / apply / bind
+function greet(greeting) { return greeting + ', ' + this.name }
+const person = { name: '张三' }
+console.log('call:', greet.call(person, 'Hello'))
+console.log('apply:', greet.apply(person, ['Hi']))
+const bound = greet.bind(person)
+console.log('bind:', bound('Hey'))
+
+// 5. 修复 setTimeout 中 this 丢失
+const obj3 = {
+  name: '李四',
+  greet() {
+    setTimeout(() => {
+      console.log('箭头函数修复:', 'Hello, ' + this.name)
+    }, 100)
+  }
+}
+obj3.greet()
+`
 
 // ========== 任务1: this 指向分析 ==========
 const scenarios = reactive([

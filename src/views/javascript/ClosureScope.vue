@@ -48,12 +48,45 @@ for (var i = 0; i &lt; 5; i++) {
       <el-button type="success" @click="runFixedTrap">运行修复后的版本</el-button>
       <p style="margin-top: 12px">{{ trapResult }}</p>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="闭包与作用域在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 闭包：计数器工厂
+function createCounter(init) {
+  let count = init
+  return {
+    increment() { count++ },
+    decrement() { count-- },
+    getCount() { return count },
+  }
+}
+const c = createCounter(0)
+c.increment()
+c.increment()
+c.decrement()
+console.log('计数器:', c.getCount())
+
+// 经典闭包陷阱 - 修复前
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => console.log('var循环:', i), i * 50)
+}
+
+// 修复：用 let
+for (let j = 0; j < 5; j++) {
+  setTimeout(() => console.log('let循环:', j), 300 + j * 50)
+}
+`
 
 // ========== 任务1: 计数器工厂 ==========
 // TODO: 实现 createCounter 函数

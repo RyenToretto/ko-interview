@@ -48,12 +48,46 @@
         <el-descriptions-item label="空值合并提供默认值">{{ task4b }}</el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="ES6+ 新特性在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// let vs var
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log('var:', i), 0)
+}
+for (let j = 0; j < 3; j++) {
+  setTimeout(() => console.log('let:', j), 10)
+}
+
+// 解构赋值
+const [a, b, ...rest] = [1, 2, 3, 4, 5]
+console.log('数组解构:', a, b, rest)
+
+const { name: userName, age = 18 } = { name: '张三' }
+console.log('对象解构:', userName, age)
+
+// 展开运算符
+console.log('合并数组:', [...[1,2], ...[3,4]])
+console.log('合并对象:', { ...{a:1}, ...{b:2} })
+
+// 可选链 + 空值合并
+const obj = { a: { b: null } }
+console.log('可选链:', obj?.a?.b?.c)
+console.log('空值合并:', null ?? '默认值')
+console.log('|| 对比:', 0 || '默认值', '← 注意0被当作falsy')
+console.log('?? 对比:', 0 ?? '默认值', '← 0不是null/undefined')
+`
 
 // ========== 任务1: let/const vs var ==========
 const varResult = ref('')

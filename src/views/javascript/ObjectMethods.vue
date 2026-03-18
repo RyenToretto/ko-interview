@@ -32,11 +32,40 @@ const job = { title: '前端工程师', company: 'ABC公司' }</pre>
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="对象方法在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `const person = { name: '张三', age: 25, city: '北京' }
+const job = { title: '前端工程师', company: 'ABC公司' }
+
+// Object.keys / values / entries
+console.log('keys:', Object.keys(person))
+console.log('values:', Object.values(person))
+console.log('entries:', Object.entries(person))
+
+// 展开运算符合并
+const merged = { ...person, ...job }
+console.log('merged:', merged)
+
+// 解构赋值
+const { name, age } = person
+console.log('解构:', name, age)
+
+// Object.freeze
+const frozen = Object.freeze({ x: 1 })
+frozen.x = 2  // 静默失败
+console.log('freeze后:', frozen.x)
+`
 
 const person = { name: '张三', age: 25, city: '北京' }
 const job = { title: '前端工程师', company: 'ABC公司' }

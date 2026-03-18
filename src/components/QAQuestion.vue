@@ -12,7 +12,7 @@
     >
       <div class="qa-question-label">
         <el-tag type="primary" size="small">问题 {{ idx + 1 }}</el-tag>
-        <span class="qa-question-text">{{ item.q }}</span>
+        <span class="qa-question-text" v-html="item.q" />
       </div>
       <el-collapse v-if="item.a">
         <el-collapse-item title="查看参考答案">
@@ -54,5 +54,36 @@ defineProps<{
   color: var(--text-secondary);
   line-height: 1.8;
   font-size: 14px;
+}
+
+.qa-question-text :deep(pre),
+.qa-question-answer :deep(pre) {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 8px 0;
+}
+
+.qa-question-text :deep(code),
+.qa-question-answer :deep(code) {
+  background: #f0f0f0;
+  color: #c7254e;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+}
+
+.qa-question-text :deep(pre code),
+.qa-question-answer :deep(pre code) {
+  background: transparent;
+  color: inherit;
+  padding: 0;
 }
 </style>
