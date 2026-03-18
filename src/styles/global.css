@@ -7,6 +7,19 @@
   --text-primary: #303133;
   --text-secondary: #606266;
   --border-color: #e4e7ed;
+  --sidebar-bg: #ffffff;
+  --toolbar-bg: #ffffff;
+}
+
+html.dark {
+  --bg-color: #141414;
+  --card-bg: #1d1e1f;
+  --text-primary: #e5eaf3;
+  --text-secondary: #a3a6ad;
+  --border-color: #414243;
+  --sidebar-bg: #1d1e1f;
+  --toolbar-bg: #1d1e1f;
+  color-scheme: dark;
 }
 
 * {
@@ -21,6 +34,7 @@ html, body, #app {
     'Microsoft YaHei', Arial, sans-serif;
   color: var(--text-primary);
   background-color: var(--bg-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a {

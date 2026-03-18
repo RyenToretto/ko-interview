@@ -70,6 +70,12 @@
     </el-aside>
     <el-container direction="vertical" class="main-layout-right">
       <div class="main-layout-toolbar">
+        <el-button
+          :icon="theme === 'dark' ? Sunny : Moon"
+          circle
+          size="small"
+          @click="toggleTheme"
+        />
         <el-switch
           v-model="isInterviewerMode"
           active-text="面试官"
@@ -88,10 +94,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { HomeFilled, Search, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
+import { HomeFilled, Search, Sunny, Moon, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
 import { categories } from '@/config/questions'
 import type { Difficulty } from '@/config/questions'
 import { useInterviewMode } from '@/composables/useInterviewMode'
+import { useTheme } from '@/composables/useTheme'
 
 const route = useRoute()
 const currentRoute = computed(() => route.path)
@@ -117,6 +124,7 @@ const filteredOpenedMenus = computed(() =>
 )
 
 const { mode, setMode } = useInterviewMode()
+const { theme, toggleTheme } = useTheme()
 
 function difficultyTagType(d: Difficulty) {
   return d === 'easy' ? 'success' : d === 'medium' ? 'warning' : 'danger'
@@ -137,7 +145,7 @@ const isInterviewerMode = computed({
 }
 
 .main-layout-sidebar {
-  background: #fff;
+  background: var(--sidebar-bg);
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
@@ -203,8 +211,9 @@ const isInterviewerMode = computed({
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 12px;
   padding: 0 24px;
-  background: #fff;
+  background: var(--toolbar-bg);
   border-bottom: 1px solid var(--border-color);
   flex-shrink: 0;
 }
