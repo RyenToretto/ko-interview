@@ -39,6 +39,41 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/css/SelectorPriority.vue'),
       },
       {
+        path: 'css/responsive',
+        name: 'CssResponsive',
+        component: () => import('@/views/css/Responsive.vue'),
+      },
+      {
+        path: 'css/mobile',
+        name: 'CssMobile',
+        component: () => import('@/views/css/MobileAdapt.vue'),
+      },
+      {
+        path: 'css/units',
+        name: 'CssUnits',
+        component: () => import('@/views/css/CssUnits.vue'),
+      },
+      {
+        path: 'css/blocking',
+        name: 'CssBlocking',
+        component: () => import('@/views/css/CssBlocking.vue'),
+      },
+      {
+        path: 'css/less',
+        name: 'CssLess',
+        component: () => import('@/views/css/LessFeatures.vue'),
+      },
+      {
+        path: 'css/scss',
+        name: 'CssScss',
+        component: () => import('@/views/css/ScssFeatures.vue'),
+      },
+      {
+        path: 'css/transform-perf',
+        name: 'CssTransformPerf',
+        component: () => import('@/views/css/TransformPerf.vue'),
+      },
+      {
         path: 'css/animation',
         name: 'CssAnimation',
         component: () => import('@/views/css/CssAnimation.vue'),
