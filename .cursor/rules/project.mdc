@@ -1,0 +1,44 @@
+---
+description: ko-interview 前端面试考察项目的 Cursor IDE 规则
+globs:
+  - "src/**/*.vue"
+  - "src/**/*.ts"
+  - "src/**/*.css"
+---
+
+# 项目规则
+
+## 项目概述
+ko-interview 是基于 Vue 3 + TypeScript + Vite + Element Plus 的前端面试考察系统。
+左侧菜单为题目目录，右侧为独立题目页面，候选人在项目中直接修改代码作答。
+
+## 技术栈
+- Vue 3.5+（Composition API, `<script setup>`）
+- TypeScript 5.7+
+- Vite 6.2+
+- Element Plus 2.13+（自动按需导入）
+- Vue Router 4.5+
+
+## CSS 规则（最重要）
+- **禁止**使用 `&` 拼接类名（如 `&-item`、`&__box`、`&--active`）
+- `&.active`、`&:hover`、`&::before` 是允许的
+- 每个类名必须完整书写，使用 kebab-case
+- 类名以组件功能为前缀（如 `center-demo-box`）
+- 始终使用 `<style scoped>`
+
+## Vue 规则
+- 始终使用 `<script setup lang="ts">`
+- Props: `defineProps<T>()`
+- Emits: `defineEmits<T>()`
+- 组件文件名: PascalCase
+- import 路径: `@/` 别名
+
+## 题目文件结构
+- 代码题: 使用 `QuestionCard` 组件包裹，留 `TODO` 标记
+- 问答题: 使用 `QAQuestion` 组件，传入 questions 数组
+- 新题目需同时更新: 视图文件、`config/questions.ts`、`router/index.ts`
+
+## 多语言规则
+- 检查已有 key 避免重复
+- 通用文本放 common 模块
+- 保持层级结构不变
