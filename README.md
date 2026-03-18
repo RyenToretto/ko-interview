@@ -5,78 +5,146 @@
 ## 使用方式
 
 ```bash
-# 安装依赖
 npm install
-
-# 启动开发服务器
 npm run dev
-
-# 构建
-npm run build
 ```
 
 ## 项目说明
 
-左侧菜单为题目目录（按 CSS / JavaScript / Vue3 / TypeScript 分类），右侧为题目页面。题目按**面试高频程度从高到低排序**，越靠前越必问。
+左侧菜单为题目目录（13 个分类），右侧为题目页面。题目按面试高频程度排序。
 
-- **代码题**：候选人在对应 `.vue` 文件中找到 `TODO` 标记，直接编写代码实现，保存后页面自动热更新
+- **代码题**：候选人在 `.vue` 文件中找到 `TODO` 标记编写代码，部分题目支持在线编辑运行
 - **问答题**：面试官与候选人口头讨论，折叠面板内有参考答案
 
-## 题目列表（共 29 题，按必问程度排序）
+## 题目列表（共 73 题）
 
-### CSS（6 题）
+### HTML（3 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | 语义化标签与 HTML5 新特性 | 问答 |
+| 2 | meta 标签、src 与 href | 问答 |
+| 3 | 行内元素 vs 块级元素 | 问答 |
 
-| # | 题目 | 类型 | 文件 |
-|---|------|------|------|
-| 1 | 盒模型与 BFC | 问答题 | `src/views/css/BoxModel.vue` |
-| 2 | 水平垂直居中 | 代码题 | `src/views/css/CenterAlign.vue` |
-| 3 | Flex 弹性布局 | 代码题 | `src/views/css/FlexLayout.vue` |
-| 4 | position 定位 | 代码题 | `src/views/css/PositionLayout.vue` |
-| 5 | CSS 选择器与优先级 | 问答题 | `src/views/css/SelectorPriority.vue` |
-| 6 | CSS 过渡与动画 | 代码题 | `src/views/css/CssAnimation.vue` |
+### CSS（14 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | CSS 经典「为什么」陷阱 | 问答 |
+| 2 | 盒模型与 BFC | 问答 |
+| 3 | 水平垂直居中 | 代码 |
+| 4 | Flex 弹性布局 | 代码 |
+| 5 | position 定位 | 代码 |
+| 6 | CSS 选择器与优先级 | 问答 |
+| 7 | 响应式布局 | 代码 |
+| 8 | 移动端适配 | 问答 |
+| 9 | rem/em/px/vw/vh 单位 | 代码 |
+| 10 | CSS 会阻塞渲染吗 | 问答 |
+| 11 | Less 预处理器 | 问答 |
+| 12 | Scss/Sass 预处理器 | 问答 |
+| 13 | transform 与 opacity 性能 | 问答 |
+| 14 | CSS 过渡与动画 | 代码 |
 
-### JavaScript（11 题）
-
-| # | 题目 | 类型 | 文件 |
-|---|------|------|------|
-| 1 | this 指向 | 代码题 | `src/views/javascript/ThisBinding.vue` |
-| 2 | 原型与原型链 | 问答题 | `src/views/javascript/PrototypeChain.vue` |
-| 3 | 闭包与作用域 | 代码题 | `src/views/javascript/ClosureScope.vue` |
-| 4 | Promise 与 async/await | 代码题 | `src/views/javascript/PromiseAsync.vue` |
-| 5 | 事件循环 | 问答题 | `src/views/javascript/EventLoop.vue` |
-| 6 | ES6+ 新特性 | 代码题 | `src/views/javascript/ES6Features.vue` |
-| 7 | 数组常用方法 | 代码题 | `src/views/javascript/ArrayMethods.vue` |
-| 8 | 对象常用方法 | 代码题 | `src/views/javascript/ObjectMethods.vue` |
-| 9 | 手写防抖与节流 | 代码题 | `src/views/javascript/DebounceThrottle.vue` |
-| 10 | 手写 call / apply / bind | 代码题 | `src/views/javascript/CallApplyBind.vue` |
-| 11 | 深拷贝实现 | 代码题 | `src/views/javascript/DeepClone.vue` |
+### JavaScript（16 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | 原型与原型链 | 问答 |
+| 2 | this 指向 | 代码 |
+| 3 | 闭包与作用域 | 代码 |
+| 4 | 闭包原理：为什么函数能记住变量 | 问答 |
+| 5 | Promise 与 async/await | 代码 |
+| 6 | 事件循环 | 问答 |
+| 7 | JS 单线程为什么能异步 | 问答 |
+| 8 | ES6+ 新特性 | 代码 |
+| 9 | 迭代器与 for...of / for...in | 代码 |
+| 10 | 数组常用方法 | 代码 |
+| 11 | 对象常用方法 | 代码 |
+| 12 | 手写防抖与节流 | 代码 |
+| 13 | 手写 call / apply / bind | 代码 |
+| 14 | 深拷贝实现 | 代码 |
+| 15 | 垃圾回收机制 | 问答 |
+| 16 | V8 执行机制 | 问答 |
 
 ### Vue 3（9 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | Vue3 vs Vue2 区别 | 问答 |
+| 2 | ref 与 reactive | 代码 |
+| 3 | 生命周期 | 问答 |
+| 4 | 组件通信 | 代码 |
+| 5 | computed 与 watch | 代码 |
+| 6 | 虚拟 DOM 与 Diff | 问答 |
+| 7 | nextTick | 代码 |
+| 8 | 自定义指令 | 代码 |
+| 9 | 插槽 | 代码 |
 
-| # | 题目 | 类型 | 文件 |
-|---|------|------|------|
-| 1 | Vue3 vs Vue2 区别 | 问答题 | `src/views/vue3/Vue3VsVue2.vue` |
-| 2 | ref 与 reactive | 代码题 | `src/views/vue3/ReactiveRef.vue` |
-| 3 | 生命周期 | 问答题 | `src/views/vue3/Lifecycle.vue` |
-| 4 | 组件通信 | 代码题 | `src/views/vue3/ComponentComm.vue` |
-| 5 | computed 与 watch | 代码题 | `src/views/vue3/ComputedWatch.vue` |
-| 6 | 虚拟 DOM 与 Diff | 问答题 | `src/views/vue3/VirtualDom.vue` |
-| 7 | nextTick | 代码题 | `src/views/vue3/NextTick.vue` |
-| 8 | 自定义指令 | 代码题 | `src/views/vue3/CustomDirective.vue` |
-| 9 | 插槽 | 代码题 | `src/views/vue3/SlotsUsage.vue` |
+### Vue 生态（4 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | Vue Router 路由守卫 | 问答 |
+| 2 | Pinia 状态管理 | 问答 |
+| 3 | keep-alive 组件缓存 | 问答 |
+| 4 | Composables 自定义 Hook | 代码 |
 
-### TypeScript（3 题）
+### TypeScript（4 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | 扁平数组转树形结构 | 代码 |
+| 2 | 基础类型与接口 | 代码 |
+| 3 | 泛型 | 代码 |
+| 4 | 类型体操基础 | 问答 |
 
-| # | 题目 | 类型 | 文件 |
-|---|------|------|------|
-| 1 | 基础类型与接口 | 代码题 | `src/views/typescript/BasicTypes.vue` |
-| 2 | 泛型 | 代码题 | `src/views/typescript/Generics.vue` |
-| 3 | 类型体操基础 | 问答题 | `src/views/typescript/TypeUtility.vue` |
+### React（4 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | React Hooks 核心 | 问答 |
+| 2 | Fiber 架构与虚拟 DOM | 问答 |
+| 3 | React 状态管理 | 问答 |
+| 4 | React 性能优化 | 问答 |
+
+### Angular（3 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | Angular 核心概念 | 问答 |
+| 2 | Angular vs React vs Vue | 问答 |
+| 3 | RxJS 响应式编程 | 问答 |
+
+### 工程化（4 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | Webpack vs Vite 构建原理 | 问答 |
+| 2 | 模块化 CommonJS vs ESM | 问答 |
+| 3 | 代码规范与质量 | 问答 |
+| 4 | CI/CD 与 Git 工作流 | 问答 |
+
+### 性能优化（3 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | 首屏加载优化 | 问答 |
+| 2 | 懒加载与虚拟滚动 | 问答 |
+| 3 | 缓存策略 | 问答 |
+
+### 浏览器原理（3 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | 浏览器渲染流程 | 问答 |
+| 2 | 跨域与同源策略 | 问答 |
+| 3 | 前端安全 XSS/CSRF | 问答 |
+
+### HTTP 网络（3 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | HTTP/1.1 vs HTTP/2 vs HTTP/3 | 问答 |
+| 2 | HTTPS 与 TCP | 问答 |
+| 3 | HTTP 状态码与方法 | 问答 |
+
+### 数据结构与算法（3 题）
+| # | 题目 | 类型 |
+|---|------|------|
+| 1 | 排序算法 | 问答 |
+| 2 | 链表与二叉树 | 问答 |
+| 3 | 高频算法题 | 代码 |
 
 ## 技术栈
 
-- Vue 3.5+
-- TypeScript 5.7+
-- Vite 6.2+
-- Element Plus 2.13+
-- Vue Router 4.5+
+- Vue 3.5+ / TypeScript 5.7+ / Vite 6.2+
+- Element Plus 2.13+ / Vue Router 4.5+
+- CodeMirror 6（在线代码编辑与运行）
