@@ -27,10 +27,46 @@
         </el-descriptions>
       </div>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="深拷贝在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 手写深拷贝
+function deepClone(obj, map = new WeakMap()) {
+  if (obj === null || typeof obj !== 'object') return obj
+  if (obj instanceof Date) return new Date(obj)
+  if (obj instanceof RegExp) return new RegExp(obj)
+  if (map.has(obj)) return map.get(obj)
+
+  const clone = Array.isArray(obj) ? [] : {}
+  map.set(obj, clone)
+  for (const key of Object.keys(obj)) {
+    clone[key] = deepClone(obj[key], map)
+  }
+  return clone
+}
+
+// 测试
+const original = { a: 1, b: { c: [1, 2, 3] }, d: new Date() }
+const cloned = deepClone(original)
+cloned.b.c.push(4)
+console.log('原对象:', JSON.stringify(original.b.c))
+console.log('拷贝:', JSON.stringify(cloned.b.c))
+
+// 循环引用测试
+const circular = { name: 'test' }
+circular.self = circular
+const clonedCircular = deepClone(circular)
+console.log('循环引用:', clonedCircular.self === clonedCircular)
+`
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
 

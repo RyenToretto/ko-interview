@@ -39,12 +39,7 @@
       <p style="margin-bottom: 12px">
         下面的代码期望输出 0, 1, 2, 3, 4，但实际输出 5 个 5。请修复 <code>fixedClosureTrap</code> 函数。
       </p>
-      <pre style="background: #f5f7fa; padding: 12px; border-radius: 6px; margin-bottom: 12px">// 有问题的版本
-for (var i = 0; i &lt; 5; i++) {
-  setTimeout(function() {
-    console.log(i)  // 输出 5 个 5
-  }, i * 100)
-}</pre>
+      <CodeBlock :code="closureTrapCode" />
       <el-button type="success" @click="runFixedTrap">运行修复后的版本</el-button>
       <p style="margin-top: 12px">{{ trapResult }}</p>
     </el-card>
@@ -60,7 +55,15 @@ for (var i = 0; i &lt; 5; i++) {
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeBlock from '@/components/CodeBlock.vue'
 import CodeRunner from '@/components/CodeRunner.vue'
+
+const closureTrapCode = `// 有问题的版本
+for (var i = 0; i < 5; i++) {
+  setTimeout(function() {
+    console.log(i)  // 输出 5 个 5
+  }, i * 100)
+}`
 
 const playgroundCode = `// 闭包：计数器工厂
 function createCounter(init) {

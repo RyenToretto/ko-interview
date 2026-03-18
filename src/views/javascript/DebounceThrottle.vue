@@ -30,12 +30,57 @@
         实际触发次数: <el-tag>{{ throttleCount }}</el-tag>
       </p>
     </el-card>
+
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="防抖与节流在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 手写防抖
+function debounce(fn, delay) {
+  let timer = null
+  return function(...args) {
+    clearTimeout(timer)
+    timer = setTimeout(() => fn.apply(this, args), delay)
+  }
+}
+
+// 手写节流
+function throttle(fn, interval) {
+  let lastTime = 0
+  return function(...args) {
+    const now = Date.now()
+    if (now - lastTime >= interval) {
+      lastTime = now
+      fn.apply(this, args)
+    }
+  }
+}
+
+// 测试防抖
+const debouncedLog = debounce((msg) => console.log('防抖:', msg), 300)
+debouncedLog('a')
+debouncedLog('b')
+debouncedLog('c')  // 只有 c 会输出
+
+// 测试节流
+const throttledLog = throttle((msg) => console.log('节流:', msg), 100)
+throttledLog('1')
+throttledLog('2')  // 被忽略
+throttledLog('3')  // 被忽略
+
+setTimeout(() => {
+  throttledLog('4')  // 100ms 后可以执行
+}, 150)
+`
 
 // ========== TODO: 实现 debounce 函数 ==========
 // 参数: fn (要防抖的函数), delay (延迟毫秒数)

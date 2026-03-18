@@ -6,11 +6,38 @@
     <template #description>
       <p>本题考察对 JavaScript 事件循环机制的理解，包括宏任务、微任务的执行顺序。</p>
     </template>
+
+    <template #extra>
+      <el-divider>在线验证区</el-divider>
+      <CodeRunner
+        title="事件循环输出验证"
+        :initial-code="playgroundCode"
+      />
+    </template>
   </QAQuestion>
 </template>
 
 <script setup lang="ts">
 import QAQuestion from '@/components/QAQuestion.vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 题目3: 预测输出顺序
+console.log("1")
+
+setTimeout(() => {
+  console.log("2")
+  Promise.resolve().then(() => console.log("3"))
+}, 0)
+
+Promise.resolve().then(() => {
+  console.log("4")
+  setTimeout(() => console.log("5"), 0)
+})
+
+console.log("6")
+
+// 期望输出: 1 → 6 → 4 → 2 → 3 → 5
+`
 
 const questions = [
   {

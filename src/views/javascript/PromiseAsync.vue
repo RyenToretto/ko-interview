@@ -43,11 +43,57 @@
         </p>
       </div>
     </el-card>
+    <el-divider>在线练习区</el-divider>
+    <CodeRunner
+      title="Promise 与 async/await 在线练习"
+      :initial-code="playgroundCode"
+    />
   </QuestionCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import CodeRunner from '@/components/CodeRunner.vue'
+
+const playgroundCode = `// 实现 delay 函数
+function delay(ms) {
+  return new Promise(resolve => setTimeout(() => resolve(ms), ms))
+}
+
+// 串行执行
+async function serial() {
+  console.log('串行开始')
+  await delay(500)
+  console.log('500ms 完成')
+  await delay(300)
+  console.log('300ms 完成')
+  console.log('串行结束')
+}
+
+// 并行执行
+async function parallel() {
+  console.log('并行开始')
+  const results = await Promise.all([delay(500), delay(300), delay(400)])
+  console.log('并行结束，结果:', results)
+}
+
+// Promise.race 超时控制
+async function withTimeout() {
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject('超时!'), 300)
+  )
+  try {
+    const result = await Promise.race([delay(500), timeout])
+    console.log('结果:', result)
+  } catch(e) {
+    console.log('捕获:', e)
+  }
+}
+
+serial()
+setTimeout(parallel, 1000)
+setTimeout(withTimeout, 2500)
+`
 import QuestionCard from '@/components/QuestionCard.vue'
 
 const logs = ref<Array<{ time: string; msg: string }>>([])

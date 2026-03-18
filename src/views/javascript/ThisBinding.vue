@@ -32,15 +32,7 @@
 
     <el-card shadow="never">
       <template #header><strong>任务3: 修复 this 丢失问题</strong></template>
-      <pre style="background: #f5f7fa; padding: 12px; border-radius: 6px; margin-bottom: 12px">const obj = {
-  name: '张三',
-  greet() {
-    setTimeout(function() {
-      console.log('Hello, ' + this.name)
-    }, 100)
-  }
-}
-obj.greet() // 输出 "Hello, undefined"</pre>
+      <CodeBlock :code="thisLostCode" />
       <p>请修复 <code>fixedGreet</code> 使其正确输出 "Hello, 张三"</p>
       <el-button type="warning" @click="runFixedGreet">运行修复版本</el-button>
       <p style="margin-top: 12px">{{ greetResult }}</p>
@@ -57,7 +49,18 @@ obj.greet() // 输出 "Hello, undefined"</pre>
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeBlock from '@/components/CodeBlock.vue'
 import CodeRunner from '@/components/CodeRunner.vue'
+
+const thisLostCode = `const obj = {
+  name: '张三',
+  greet() {
+    setTimeout(function() {
+      console.log('Hello, ' + this.name)
+    }, 100)
+  }
+}
+obj.greet() // 输出 "Hello, undefined"`
 
 const playgroundCode = `// 1. 方法调用
 const obj = {

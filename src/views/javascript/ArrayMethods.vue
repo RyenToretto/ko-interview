@@ -2,13 +2,7 @@
   <QuestionCard title="数组常用方法" type="code">
     <template #description>
       <p>给定以下数据，请使用数组方法完成每个任务：</p>
-      <pre>const users = [
-  { name: '张三', age: 25, score: 88 },
-  { name: '李四', age: 30, score: 72 },
-  { name: '王五', age: 22, score: 95 },
-  { name: '赵六', age: 28, score: 60 },
-  { name: '孙七', age: 35, score: 83 },
-]</pre>
+      <CodeBlock :code="usersDataCode" />
     </template>
 
     <el-card shadow="never">
@@ -51,7 +45,16 @@
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeBlock from '@/components/CodeBlock.vue'
 import CodeRunner from '@/components/CodeRunner.vue'
+
+const usersDataCode = `const users = [
+  { name: '张三', age: 25, score: 88 },
+  { name: '李四', age: 30, score: 72 },
+  { name: '王五', age: 22, score: 95 },
+  { name: '赵六', age: 28, score: 60 },
+  { name: '孙七', age: 35, score: 83 },
+]`
 
 const playgroundCode = `const users = [
   { name: '张三', age: 25, score: 88 },

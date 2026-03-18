@@ -2,8 +2,7 @@
   <QuestionCard title="对象常用方法" type="code">
     <template #description>
       <p>给定以下对象，请使用 Object 的静态方法和展开运算符完成每个任务：</p>
-      <pre>const person = { name: '张三', age: 25, city: '北京' }
-const job = { title: '前端工程师', company: 'ABC公司' }</pre>
+      <CodeBlock :code="objectDataCode" />
     </template>
 
     <el-card shadow="never">
@@ -43,7 +42,11 @@ const job = { title: '前端工程师', company: 'ABC公司' }</pre>
 
 <script setup lang="ts">
 import QuestionCard from '@/components/QuestionCard.vue'
+import CodeBlock from '@/components/CodeBlock.vue'
 import CodeRunner from '@/components/CodeRunner.vue'
+
+const objectDataCode = `const person = { name: '张三', age: 25, city: '北京' }
+const job = { title: '前端工程师', company: 'ABC公司' }`
 
 const playgroundCode = `const person = { name: '张三', age: 25, city: '北京' }
 const job = { title: '前端工程师', company: 'ABC公司' }

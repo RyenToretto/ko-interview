@@ -20,6 +20,8 @@
         </el-collapse-item>
       </el-collapse>
     </el-card>
+
+    <slot name="extra" />
   </QuestionCard>
 </template>
 
