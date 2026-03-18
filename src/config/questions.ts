@@ -79,6 +79,17 @@ export const categories: QuestionCategory[] = [
     ],
   },
   {
+    id: 'vue-eco',
+    label: 'Vue 生态',
+    icon: 'SetUp',
+    questions: [
+      { id: 'vue-eco-router', title: 'Vue Router 路由守卫', type: 'qa', path: '/vue-eco/router-guard' },
+      { id: 'vue-eco-pinia', title: 'Pinia 状态管理', type: 'qa', path: '/vue-eco/pinia' },
+      { id: 'vue-eco-keep-alive', title: 'keep-alive 组件缓存', type: 'qa', path: '/vue-eco/keep-alive' },
+      { id: 'vue-eco-composables', title: 'Composables 自定义 Hook', type: 'code', path: '/vue-eco/composables' },
+    ],
+  },
+  {
     id: 'typescript',
     label: 'TypeScript',
     icon: 'Document',
@@ -90,14 +101,75 @@ export const categories: QuestionCategory[] = [
     ],
   },
   {
-    id: 'vue-eco',
-    label: 'Vue 生态',
-    icon: 'SetUp',
+    id: 'react',
+    label: 'React',
+    icon: 'ChromeFilled',
     questions: [
-      { id: 'vue-eco-router', title: 'Vue Router 路由守卫', type: 'qa', path: '/vue-eco/router-guard' },
-      { id: 'vue-eco-pinia', title: 'Pinia 状态管理', type: 'qa', path: '/vue-eco/pinia' },
-      { id: 'vue-eco-keep-alive', title: 'keep-alive 组件缓存', type: 'qa', path: '/vue-eco/keep-alive' },
-      { id: 'vue-eco-composables', title: 'Composables 自定义 Hook', type: 'code', path: '/vue-eco/composables' },
+      { id: 'react-hooks', title: 'React Hooks 核心', type: 'qa', path: '/react/hooks' },
+      { id: 'react-fiber', title: 'Fiber 架构与虚拟 DOM', type: 'qa', path: '/react/fiber' },
+      { id: 'react-state', title: 'React 状态管理', type: 'qa', path: '/react/state' },
+      { id: 'react-perf', title: 'React 性能优化', type: 'qa', path: '/react/perf' },
+    ],
+  },
+  {
+    id: 'angular',
+    label: 'Angular',
+    icon: 'Platform',
+    questions: [
+      { id: 'angular-core', title: 'Angular 核心概念', type: 'qa', path: '/angular/core' },
+      { id: 'angular-vs-others', title: 'Angular vs React vs Vue', type: 'qa', path: '/angular/vs-others' },
+      { id: 'angular-rxjs', title: 'RxJS 响应式编程', type: 'qa', path: '/angular/rxjs' },
+    ],
+  },
+  {
+    id: 'engineering',
+    label: '工程化',
+    icon: 'Setting',
+    questions: [
+      { id: 'eng-build-tools', title: 'Webpack vs Vite 构建原理', type: 'qa', path: '/engineering/build-tools' },
+      { id: 'eng-module-system', title: '模块化 CommonJS vs ESM', type: 'qa', path: '/engineering/module-system' },
+      { id: 'eng-code-quality', title: '代码规范与质量', type: 'qa', path: '/engineering/code-quality' },
+      { id: 'eng-cicd', title: 'CI/CD 与 Git 工作流', type: 'qa', path: '/engineering/cicd' },
+    ],
+  },
+  {
+    id: 'performance',
+    label: '性能优化',
+    icon: 'Timer',
+    questions: [
+      { id: 'perf-first-screen', title: '首屏加载优化', type: 'qa', path: '/performance/first-screen' },
+      { id: 'perf-lazy-virtual', title: '懒加载与虚拟滚动', type: 'qa', path: '/performance/lazy-virtual' },
+      { id: 'perf-cache', title: '缓存策略', type: 'qa', path: '/performance/cache' },
+    ],
+  },
+  {
+    id: 'browser',
+    label: '浏览器原理',
+    icon: 'Monitor',
+    questions: [
+      { id: 'browser-render', title: '浏览器渲染流程', type: 'qa', path: '/browser/render' },
+      { id: 'browser-cross-origin', title: '跨域与同源策略', type: 'qa', path: '/browser/cross-origin' },
+      { id: 'browser-security', title: '前端安全 XSS/CSRF', type: 'qa', path: '/browser/security' },
+    ],
+  },
+  {
+    id: 'http',
+    label: 'HTTP 网络',
+    icon: 'Link',
+    questions: [
+      { id: 'http-versions', title: 'HTTP/1.1 vs HTTP/2 vs HTTP/3', type: 'qa', path: '/http/versions' },
+      { id: 'http-https-tcp', title: 'HTTPS 与 TCP', type: 'qa', path: '/http/https-tcp' },
+      { id: 'http-status', title: 'HTTP 状态码与方法', type: 'qa', path: '/http/status' },
+    ],
+  },
+  {
+    id: 'algorithm',
+    label: '数据结构与算法',
+    icon: 'DataAnalysis',
+    questions: [
+      { id: 'algo-sort', title: '排序算法', type: 'qa', path: '/algorithm/sort' },
+      { id: 'algo-linked-tree', title: '链表与二叉树', type: 'qa', path: '/algorithm/linked-tree' },
+      { id: 'algo-common', title: '高频算法题', type: 'code', path: '/algorithm/common' },
     ],
   },
 ]

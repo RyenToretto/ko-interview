@@ -215,6 +215,128 @@ const routes: RouteRecordRaw[] = [
         name: 'VueSlots',
         component: () => import('@/views/vue3/SlotsUsage.vue'),
       },
+      // ========== React ==========
+      {
+        path: 'react/hooks',
+        name: 'ReactHooks',
+        component: () => import('@/views/react/ReactHooks.vue'),
+      },
+      {
+        path: 'react/fiber',
+        name: 'ReactFiber',
+        component: () => import('@/views/react/ReactFiber.vue'),
+      },
+      {
+        path: 'react/state',
+        name: 'ReactState',
+        component: () => import('@/views/react/ReactState.vue'),
+      },
+      {
+        path: 'react/perf',
+        name: 'ReactPerf',
+        component: () => import('@/views/react/ReactPerf.vue'),
+      },
+      // ========== Angular ==========
+      {
+        path: 'angular/core',
+        name: 'AngularCore',
+        component: () => import('@/views/angular/AngularCore.vue'),
+      },
+      {
+        path: 'angular/vs-others',
+        name: 'AngularVsOthers',
+        component: () => import('@/views/angular/AngularVsOthers.vue'),
+      },
+      {
+        path: 'angular/rxjs',
+        name: 'AngularRxJS',
+        component: () => import('@/views/angular/RxJS.vue'),
+      },
+      // ========== 工程化 ==========
+      {
+        path: 'engineering/build-tools',
+        name: 'EngBuildTools',
+        component: () => import('@/views/engineering/BuildTools.vue'),
+      },
+      {
+        path: 'engineering/module-system',
+        name: 'EngModuleSystem',
+        component: () => import('@/views/engineering/ModuleSystem.vue'),
+      },
+      {
+        path: 'engineering/code-quality',
+        name: 'EngCodeQuality',
+        component: () => import('@/views/engineering/CodeQuality.vue'),
+      },
+      {
+        path: 'engineering/cicd',
+        name: 'EngCICD',
+        component: () => import('@/views/engineering/CICD.vue'),
+      },
+      // ========== Performance ==========
+      {
+        path: 'performance/first-screen',
+        name: 'PerfFirstScreen',
+        component: () => import('@/views/performance/FirstScreenOptimize.vue'),
+      },
+      {
+        path: 'performance/lazy-virtual',
+        name: 'PerfLazyVirtual',
+        component: () => import('@/views/performance/LazyLoadVirtualScroll.vue'),
+      },
+      {
+        path: 'performance/cache',
+        name: 'PerfCache',
+        component: () => import('@/views/performance/CacheStrategy.vue'),
+      },
+      // ========== Browser ==========
+      {
+        path: 'browser/render',
+        name: 'BrowserRender',
+        component: () => import('@/views/browser/RenderPipeline.vue'),
+      },
+      {
+        path: 'browser/cross-origin',
+        name: 'BrowserCrossOrigin',
+        component: () => import('@/views/browser/CrossOrigin.vue'),
+      },
+      {
+        path: 'browser/security',
+        name: 'BrowserSecurity',
+        component: () => import('@/views/browser/WebSecurity.vue'),
+      },
+      // ========== HTTP ==========
+      {
+        path: 'http/versions',
+        name: 'HttpVersions',
+        component: () => import('@/views/http/HttpVersions.vue'),
+      },
+      {
+        path: 'http/https-tcp',
+        name: 'HttpHttpsTcp',
+        component: () => import('@/views/http/HttpsAndTcp.vue'),
+      },
+      {
+        path: 'http/status',
+        name: 'HttpStatus',
+        component: () => import('@/views/http/StatusCodes.vue'),
+      },
+      // ========== Algorithm ==========
+      {
+        path: 'algorithm/sort',
+        name: 'AlgoSort',
+        component: () => import('@/views/algorithm/SortAlgorithm.vue'),
+      },
+      {
+        path: 'algorithm/linked-tree',
+        name: 'AlgoLinkedTree',
+        component: () => import('@/views/algorithm/LinkedListTree.vue'),
+      },
+      {
+        path: 'algorithm/common',
+        name: 'AlgoCommon',
+        component: () => import('@/views/algorithm/CommonAlgorithm.vue'),
+      },
       // ========== Vue 生态 ==========
       {
         path: 'vue-eco/router-guard',
