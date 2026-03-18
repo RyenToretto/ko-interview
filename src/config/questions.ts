@@ -89,4 +89,15 @@ export const categories: QuestionCategory[] = [
       { id: 'ts-utility', title: '类型体操基础', type: 'qa', path: '/ts/utility' },
     ],
   },
+  {
+    id: 'vue-eco',
+    label: 'Vue 生态',
+    icon: 'SetUp',
+    questions: [
+      { id: 'vue-eco-router', title: 'Vue Router 路由守卫', type: 'qa', path: '/vue-eco/router-guard' },
+      { id: 'vue-eco-pinia', title: 'Pinia 状态管理', type: 'qa', path: '/vue-eco/pinia' },
+      { id: 'vue-eco-keep-alive', title: 'keep-alive 组件缓存', type: 'qa', path: '/vue-eco/keep-alive' },
+      { id: 'vue-eco-composables', title: 'Composables 自定义 Hook', type: 'code', path: '/vue-eco/composables' },
+    ],
+  },
 ]

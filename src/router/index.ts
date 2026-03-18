@@ -215,6 +215,27 @@ const routes: RouteRecordRaw[] = [
         name: 'VueSlots',
         component: () => import('@/views/vue3/SlotsUsage.vue'),
       },
+      // ========== Vue 生态 ==========
+      {
+        path: 'vue-eco/router-guard',
+        name: 'VueEcoRouter',
+        component: () => import('@/views/vue-eco/RouterGuard.vue'),
+      },
+      {
+        path: 'vue-eco/pinia',
+        name: 'VueEcoPinia',
+        component: () => import('@/views/vue-eco/PiniaStore.vue'),
+      },
+      {
+        path: 'vue-eco/keep-alive',
+        name: 'VueEcoKeepAlive',
+        component: () => import('@/views/vue-eco/KeepAlive.vue'),
+      },
+      {
+        path: 'vue-eco/composables',
+        name: 'VueEcoComposables',
+        component: () => import('@/views/vue-eco/Composables.vue'),
+      },
       // ========== TypeScript ==========
       {
         path: 'ts/flat-to-tree',
