@@ -83,22 +83,31 @@ const routes: RouteRecordRaw[] = [
         name: 'CssAnimation',
         component: () => import('@/views/css/CssAnimation.vue'),
       },
-      // ========== JavaScript（按必问程度排序）==========
-      {
-        path: 'js/this',
-        name: 'JsThis',
-        component: () => import('@/views/javascript/ThisBinding.vue'),
-      },
+      // ========== JavaScript（1️⃣原型链 → 2️⃣this → 3️⃣闭包 → 4️⃣Promise+EventLoop → 5️⃣其他）==========
+      // 1️⃣ 原型链
       {
         path: 'js/prototype',
         name: 'JsPrototype',
         component: () => import('@/views/javascript/PrototypeChain.vue'),
       },
+      // 2️⃣ this
+      {
+        path: 'js/this',
+        name: 'JsThis',
+        component: () => import('@/views/javascript/ThisBinding.vue'),
+      },
+      // 3️⃣ 闭包
       {
         path: 'js/closure',
         name: 'JsClosure',
         component: () => import('@/views/javascript/ClosureScope.vue'),
       },
+      {
+        path: 'js/closure-why',
+        name: 'JsClosureWhy',
+        component: () => import('@/views/javascript/ClosureWhy.vue'),
+      },
+      // 4️⃣ Promise + Event Loop
       {
         path: 'js/promise',
         name: 'JsPromise',
@@ -110,9 +119,20 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/javascript/EventLoop.vue'),
       },
       {
+        path: 'js/single-thread',
+        name: 'JsSingleThread',
+        component: () => import('@/views/javascript/SingleThreadAsync.vue'),
+      },
+      // 5️⃣ 其他
+      {
         path: 'js/es6',
         name: 'JsES6',
         component: () => import('@/views/javascript/ES6Features.vue'),
+      },
+      {
+        path: 'js/iterator',
+        name: 'JsIterator',
+        component: () => import('@/views/javascript/Iterator.vue'),
       },
       {
         path: 'js/array',
@@ -138,6 +158,16 @@ const routes: RouteRecordRaw[] = [
         path: 'js/deep-clone',
         name: 'JsDeepClone',
         component: () => import('@/views/javascript/DeepClone.vue'),
+      },
+      {
+        path: 'js/gc',
+        name: 'JsGC',
+        component: () => import('@/views/javascript/GarbageCollection.vue'),
+      },
+      {
+        path: 'js/v8',
+        name: 'JsV8',
+        component: () => import('@/views/javascript/V8Engine.vue'),
       },
       // ========== Vue3（按必问程度排序）==========
       {

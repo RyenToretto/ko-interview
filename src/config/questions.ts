@@ -39,17 +39,27 @@ export const categories: QuestionCategory[] = [
     label: 'JavaScript',
     icon: 'Coffee',
     questions: [
-      { id: 'js-this', title: 'this 指向', type: 'code', path: '/js/this' },
+      // 1️⃣ 原型链
       { id: 'js-prototype', title: '原型与原型链', type: 'qa', path: '/js/prototype' },
+      // 2️⃣ this
+      { id: 'js-this', title: 'this 指向', type: 'code', path: '/js/this' },
+      // 3️⃣ 闭包
       { id: 'js-closure', title: '闭包与作用域', type: 'code', path: '/js/closure' },
+      { id: 'js-closure-why', title: '闭包原理：为什么函数能记住变量', type: 'qa', path: '/js/closure-why' },
+      // 4️⃣ Promise + Event Loop
       { id: 'js-promise', title: 'Promise 与 async/await', type: 'code', path: '/js/promise' },
       { id: 'js-event-loop', title: '事件循环', type: 'qa', path: '/js/event-loop' },
+      { id: 'js-single-thread', title: 'JS 单线程为什么能异步', type: 'qa', path: '/js/single-thread' },
+      // 5️⃣ 其他
       { id: 'js-es6', title: 'ES6+ 新特性', type: 'code', path: '/js/es6' },
+      { id: 'js-iterator', title: '迭代器与 for...of / for...in', type: 'code', path: '/js/iterator' },
       { id: 'js-array', title: '数组常用方法', type: 'code', path: '/js/array' },
       { id: 'js-object', title: '对象常用方法', type: 'code', path: '/js/object' },
       { id: 'js-debounce', title: '手写防抖与节流', type: 'code', path: '/js/debounce' },
       { id: 'js-call-apply-bind', title: '手写 call / apply / bind', type: 'code', path: '/js/call-apply-bind' },
       { id: 'js-deep-clone', title: '深拷贝实现', type: 'code', path: '/js/deep-clone' },
+      { id: 'js-gc', title: '垃圾回收机制', type: 'qa', path: '/js/gc' },
+      { id: 'js-v8', title: 'V8 执行机制', type: 'qa', path: '/js/v8' },
     ],
   },
   {
