@@ -16,6 +16,12 @@ dist-ssr
 # Claude Code local settings (personal, not shared)
 .claude/settings.local.json
 
+# Playwright MCP artifacts (snapshots/screenshots/console logs)
+.playwright-mcp/
+desktop-*.png
+home-desktop.png
+home-mobile.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

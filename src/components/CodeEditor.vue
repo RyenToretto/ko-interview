@@ -58,19 +58,30 @@ const extensions = [
 
 <style scoped>
 .code-editor-wrapper {
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   line-height: 1.5;
-  border: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
 }
 
 .code-editor-cm :deep(.cm-editor) {
-  min-height: 120px;
-  max-height: 400px;
+  min-height: 140px;
+  max-height: 420px;
 }
 
 .code-editor-cm :deep(.cm-scroller) {
   overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .code-editor-wrapper {
+    font-size: var(--font-size-sm);
+  }
+
+  .code-editor-cm :deep(.cm-editor) {
+    min-height: 120px;
+    max-height: 320px;
+  }
 }
 </style>

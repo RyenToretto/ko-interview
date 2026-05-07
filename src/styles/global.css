@@ -40,6 +40,30 @@
 
   --transition-fast: 150ms ease-out;
   --transition-normal: 250ms ease-out;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 36px;
+
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+}
+
+::selection {
+  background: var(--primary-color);
+  color: #fff;
 }
 
 html.dark {
@@ -114,5 +138,16 @@ button, a, [role="button"], .el-menu-item, .el-button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout-content {
+    padding: 12px !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
   }
 }

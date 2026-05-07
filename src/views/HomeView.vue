@@ -1,21 +1,22 @@
 <template>
   <div class="home-view">
     <div class="home-view-hero">
+      <div class="home-view-hero-glow" aria-hidden="true"></div>
       <h1 class="home-view-title">Interview</h1>
       <p class="home-view-subtitle">
         请从左侧菜单选择题目开始作答，候选人可直接在项目代码中编写实现
       </p>
       <div class="home-view-total">
-        <el-tag size="large" type="primary" effect="dark">
+        <el-tag size="large" type="primary" effect="dark" round>
           共 {{ totalCount }} 题
         </el-tag>
-        <el-tag size="large" type="success">
+        <el-tag size="large" type="success" round>
           代码题 {{ codeCount }}
         </el-tag>
-        <el-tag size="large" type="warning">
+        <el-tag size="large" type="warning" round>
           问答题 {{ qaCount }}
         </el-tag>
-        <el-tag size="large" type="info">
+        <el-tag size="large" type="info" round>
           {{ categories.length }} 个分类
         </el-tag>
       </div>
@@ -76,21 +77,51 @@
         <el-collapse-item
           v-for="group in resourceGroups"
           :key="group.id"
-          :title="`${group.title}（${group.items.length}）`"
           :name="group.id"
         >
-          <el-table :data="group.items" size="small" border stripe>
-            <el-table-column prop="name" label="名称" min-width="200" />
-            <el-table-column prop="desc" label="说明" min-width="180" />
-            <el-table-column prop="meta" label="备注" width="120" />
-            <el-table-column label="链接" width="120">
-              <template #default="{ row }">
-                <a :href="row.url" target="_blank" rel="noopener" class="home-view-resource-link">
-                  打开
+          <template #title>
+            <span class="home-view-resources-group-title">
+              {{ group.title }}
+              <el-tag size="small" type="info" effect="plain" round>
+                {{ group.items.length }}
+              </el-tag>
+            </span>
+          </template>
+          <div class="home-view-resources-list">
+            <div
+              v-for="(item, idx) in group.items"
+              :key="idx"
+              class="home-view-resources-item"
+            >
+              <div class="home-view-resources-item-info">
+                <a
+                  :href="item.url"
+                  target="_blank"
+                  rel="noopener"
+                  class="home-view-resources-item-name"
+                >
+                  {{ item.name }}
                 </a>
-              </template>
-            </el-table-column>
-          </el-table>
+                <span class="home-view-resources-item-desc">{{ item.desc }}</span>
+              </div>
+              <div class="home-view-resources-item-extra">
+                <el-tag v-if="item.meta" size="small" type="info" effect="plain">
+                  {{ item.meta }}
+                </el-tag>
+                <el-button
+                  type="primary"
+                  size="small"
+                  round
+                  tag="a"
+                  :href="item.url"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  打开
+                </el-button>
+              </div>
+            </div>
+          </div>
         </el-collapse-item>
       </el-collapse>
     </el-card>
@@ -112,107 +143,232 @@ const qaCount = computed(() =>
   categories.reduce((sum, cat) => sum + cat.questions.filter(q => q.type === 'qa').length, 0)
 )
 
-const activeGroups = ref<string[]>(['videos', 'books'])
+const activeGroups = ref<string[]>(resourceGroups.map((g) => g.id))
 </script>
 
 <style scoped>
 .home-view {
   max-width: 1080px;
   margin: 0 auto;
+  padding: var(--spacing-md) 0;
 }
 
 .home-view-hero {
+  position: relative;
   text-align: center;
-  padding: 40px 0 28px;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.home-view-hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(64, 158, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 60%, rgba(103, 194, 58, 0.14), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-view-title,
+.home-view-subtitle,
+.home-view-total {
+  position: relative;
+  z-index: 1;
 }
 
 .home-view-title {
-  font-size: 32px;
+  font-size: var(--font-size-3xl);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--primary-color), #67c23a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .home-view-subtitle {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   color: var(--text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 .home-view-total {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: var(--spacing-sm);
   flex-wrap: wrap;
 }
 
 .home-view-stats {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 .home-view-stat-card {
   text-align: center;
   cursor: default;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.home-view-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .home-view-stat-number {
-  font-size: 32px;
+  font-size: var(--font-size-2xl);
   font-weight: 700;
   color: var(--primary-color);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 1.2;
 }
 
 .home-view-stat-label {
-  font-size: 14px;
+  font-size: var(--font-size-base);
   color: var(--text-secondary);
-  margin: 2px 0 8px;
+  margin: var(--spacing-xs) 0 var(--spacing-sm);
 }
 
 .home-view-stat-tags {
   display: flex;
   justify-content: center;
-  gap: 6px;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
 }
 
 .home-view-guide {
-  margin-top: 8px;
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .home-view-guide-title {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
 }
 
 .home-view-resources {
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .home-view-resources-header {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-xs);
 }
 
 .home-view-resources-title {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
 }
 
 .home-view-resources-subtitle {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   color: var(--text-secondary);
 }
 
-.home-view-resource-link {
-  color: var(--primary-color);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.home-view-resources-group-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
 }
 
-.home-view-resource-link:hover {
-  opacity: 0.8;
+.home-view-resources-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.home-view-resources-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--card-bg-secondary);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.home-view-resources-item:hover {
+  background: var(--card-bg);
+  transform: translateX(2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-view-resources-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.home-view-resources-item-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  word-break: break-word;
+}
+
+.home-view-resources-item-name:hover {
+  color: var(--primary-color);
+}
+
+.home-view-resources-item-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.home-view-resources-item-extra {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .home-view-hero {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .home-view-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .home-view-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .home-view-stats {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .home-view-stat-number {
+    font-size: var(--font-size-xl);
+  }
+
+  .home-view-resources-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .home-view-resources-item-extra {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 </style>

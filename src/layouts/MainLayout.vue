@@ -1,101 +1,96 @@
 <template>
   <el-container class="main-layout">
-    <el-aside class="main-layout-sidebar" width="260px">
-      <div class="main-layout-logo">
-        <h1>Interview</h1>
-      </div>
-      <div class="main-layout-search">
-        <el-input
-          v-model="searchKeyword"
-          placeholder="搜索题目..."
-          clearable
-          size="small"
-          :prefix-icon="Search"
-        />
-        <el-select
-          v-model="filterDifficulty"
-          placeholder="难度"
-          clearable
-          size="small"
-          class="main-layout-filter-select"
-        >
-          <el-option label="简单" value="easy" />
-          <el-option label="中等" value="medium" />
-          <el-option label="困难" value="hard" />
-        </el-select>
-      </div>
-      <el-scrollbar class="main-layout-menu-scroll">
-        <el-menu
-          :default-openeds="filteredOpenedMenus"
-          :default-active="currentRoute"
-          router
-        >
-          <el-menu-item index="/">
-            <el-icon><HomeFilled /></el-icon>
-            <span>首页</span>
-          </el-menu-item>
-          <template v-for="category in filteredCategories" :key="category.id">
-            <el-sub-menu
-              v-if="category.questions.length"
-              :index="category.id"
-            >
-              <template #title>
-                <el-icon><component :is="category.icon" /></el-icon>
-                <span>{{ category.label }}</span>
-                <el-badge
-                  :value="category.questions.length"
-                  type="info"
-                  class="main-layout-badge"
-                />
-              </template>
-              <el-menu-item
-                v-for="q in category.questions"
-                :key="q.id"
-                :index="q.path"
-              >
-                <span class="main-layout-question-title">{{ q.title }}</span>
-                <el-tag
-                  :type="difficultyTagType(q.difficulty)"
-                  size="small"
-                  class="main-layout-question-tag"
-                  effect="plain"
-                >
-                  {{ difficultyLabel(q.difficulty) }}
-                </el-tag>
-              </el-menu-item>
-            </el-sub-menu>
-          </template>
-        </el-menu>
-      </el-scrollbar>
+    <el-aside v-if="!isMobile" class="main-layout-sidebar" width="260px">
+      <SidebarMenu
+        v-model:search-keyword="searchKeyword"
+        v-model:filter-difficulty="filterDifficulty"
+      />
     </el-aside>
+
+    <el-drawer
+      v-else
+      v-model="drawerVisible"
+      direction="ltr"
+      :with-header="false"
+      size="80%"
+      class="main-layout-drawer"
+    >
+      <SidebarMenu
+        v-model:search-keyword="searchKeyword"
+        v-model:filter-difficulty="filterDifficulty"
+        @select="handleMobileSelect"
+      />
+    </el-drawer>
+
     <el-container direction="vertical" class="main-layout-right">
       <div class="main-layout-toolbar">
-        <el-dropdown @command="setSkin" trigger="click">
-          <el-button size="small">
-            {{ skinLabel }}
-          </el-button>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="default">Default</el-dropdown-item>
-              <el-dropdown-item command="apple">Apple</el-dropdown-item>
-              <el-dropdown-item command="hero">Hero</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
         <el-button
-          :icon="theme === 'dark' ? Sunny : Moon"
+          v-if="isMobile"
+          :icon="Menu"
           circle
           size="small"
-          :aria-label="theme === 'dark' ? '切换亮色模式' : '切换暗色模式'"
-          @click="toggleTheme"
+          aria-label="打开菜单"
+          @click="drawerVisible = true"
+          class="main-layout-hamburger"
         />
-        <el-switch
-          v-model="isInterviewerMode"
-          active-text="面试官"
-          inactive-text="候选人"
-          inline-prompt
-          style="--el-switch-on-color: #409eff; --el-switch-off-color: #67c23a"
-        />
+        <span class="main-layout-toolbar-spacer"></span>
+
+        <template v-if="!isMobile">
+          <el-dropdown @command="setSkin" trigger="click">
+            <el-button size="small">
+              {{ skinLabel }}
+            </el-button>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="default">Default</el-dropdown-item>
+                <el-dropdown-item command="apple">Apple</el-dropdown-item>
+                <el-dropdown-item command="hero">Hero</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <el-button
+            :icon="theme === 'dark' ? Sunny : Moon"
+            circle
+            size="small"
+            :aria-label="theme === 'dark' ? '切换亮色模式' : '切换暗色模式'"
+            @click="toggleTheme"
+          />
+          <el-switch
+            v-model="isInterviewerMode"
+            active-text="面试官"
+            inactive-text="候选人"
+            inline-prompt
+            style="--el-switch-on-color: #409eff; --el-switch-off-color: #67c23a"
+          />
+        </template>
+
+        <template v-else>
+          <el-button
+            :icon="isInterviewerMode ? User : UserFilled"
+            circle
+            size="small"
+            :type="isInterviewerMode ? 'primary' : 'success'"
+            :aria-label="isInterviewerMode ? '切换到候选人' : '切换到面试官'"
+            @click="isInterviewerMode = !isInterviewerMode"
+          />
+          <el-button
+            :icon="theme === 'dark' ? Sunny : Moon"
+            circle
+            size="small"
+            :aria-label="theme === 'dark' ? '切换亮色模式' : '切换暗色模式'"
+            @click="toggleTheme"
+          />
+          <el-dropdown @command="setSkin" trigger="click">
+            <el-button :icon="Brush" circle size="small" aria-label="切换皮肤" />
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="default">Default</el-dropdown-item>
+                <el-dropdown-item command="apple">Apple</el-dropdown-item>
+                <el-dropdown-item command="hero">Hero</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </template>
       </div>
       <el-main class="main-layout-content">
         <router-view />
@@ -105,50 +100,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { HomeFilled, Search, Sunny, Moon, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis, MapLocation } from '@element-plus/icons-vue'
-import { categories } from '@/config/questions'
+import { Sunny, Moon, Menu, Brush, User, UserFilled } from '@element-plus/icons-vue'
 import type { Difficulty } from '@/config/questions'
 import { useInterviewMode } from '@/composables/useInterviewMode'
 import { useTheme } from '@/composables/useTheme'
+import { useIsMobile } from '@/composables/useMediaQuery'
+import SidebarMenu from './SidebarMenu.vue'
 
 const route = useRoute()
-const currentRoute = computed(() => route.path)
 
 const searchKeyword = ref('')
 const filterDifficulty = ref<Difficulty | ''>('')
 
-const filteredCategories = computed(() => {
-  const keyword = searchKeyword.value.trim().toLowerCase()
-  const diff = filterDifficulty.value
-  return categories.map((cat) => ({
-    ...cat,
-    questions: cat.questions.filter((q) => {
-      const matchKeyword = !keyword || q.title.toLowerCase().includes(keyword)
-      const matchDiff = !diff || q.difficulty === diff
-      return matchKeyword && matchDiff
-    }),
-  }))
-})
-
-const filteredOpenedMenus = computed(() =>
-  filteredCategories.value.filter((c) => c.questions.length).map((c) => c.id)
-)
-
 const { mode, setMode } = useInterviewMode()
-const { theme, skin, skinLabel, toggleTheme, setSkin } = useTheme()
+const { theme, skinLabel, toggleTheme, setSkin } = useTheme()
+const isMobile = useIsMobile()
+const drawerVisible = ref(false)
 
-function difficultyTagType(d: Difficulty) {
-  return d === 'easy' ? 'success' : d === 'medium' ? 'warning' : 'danger'
-}
-
-function difficultyLabel(d: Difficulty) {
-  return d === 'easy' ? '简单' : d === 'medium' ? '中等' : '困难'
-}
 const isInterviewerMode = computed({
   get: () => mode.value === 'interviewer',
   set: (val: boolean) => setMode(val ? 'interviewer' : 'candidate'),
+})
+
+function handleMobileSelect() {
+  drawerVisible.value = false
+}
+
+watch(() => route.path, () => {
+  if (isMobile.value) drawerVisible.value = false
 })
 </script>
 
@@ -163,55 +144,7 @@ const isInterviewerMode = computed({
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.main-layout-logo {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--border-color);
-  flex-shrink: 0;
-}
-
-.main-layout-logo h1 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--primary-color);
-  letter-spacing: 2px;
-}
-
-.main-layout-search {
-  padding: 10px 12px 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.main-layout-filter-select {
-  width: 100%;
-}
-
-.main-layout-menu-scroll {
-  flex: 1;
-  overflow: hidden;
-}
-
-.main-layout-badge {
-  margin-left: 8px;
-}
-
-.main-layout-question-title {
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.main-layout-question-tag {
-  margin-left: 8px;
-  flex-shrink: 0;
+  padding: 0;
 }
 
 .main-layout-right {
@@ -223,17 +156,42 @@ const isInterviewerMode = computed({
   height: 48px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 0 24px;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-lg);
   background: var(--toolbar-bg);
   border-bottom: 1px solid var(--border-color);
   flex-shrink: 0;
 }
 
+.main-layout-toolbar-spacer {
+  flex: 1;
+}
+
+.main-layout-hamburger {
+  flex-shrink: 0;
+}
+
 .main-layout-content {
   background: var(--bg-color);
-  padding: 24px;
+  padding: var(--spacing-lg);
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .main-layout-toolbar {
+    padding: 0 var(--spacing-sm);
+    gap: var(--spacing-xs);
+  }
+
+  .main-layout-content {
+    padding: var(--spacing-sm);
+  }
+}
+</style>
+
+<style>
+.main-layout-drawer .el-drawer__body {
+  padding: 0;
+  overflow: hidden;
 }
 </style>

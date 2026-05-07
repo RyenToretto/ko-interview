@@ -44,17 +44,24 @@ const extensions = [
 
 <style scoped>
 .code-block-wrapper {
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   line-height: 1.5;
+  box-shadow: var(--shadow-sm);
 }
 
 .code-block-editor :deep(.cm-editor) {
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .code-block-editor :deep(.cm-gutters) {
-  border-radius: 8px 0 0 8px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+@media (max-width: 768px) {
+  .code-block-wrapper {
+    font-size: var(--font-size-sm);
+  }
 }
 </style>

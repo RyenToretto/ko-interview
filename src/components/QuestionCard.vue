@@ -70,28 +70,54 @@ const difficultyLabel = computed(() => {
 .question-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
 }
 
 .question-card-title {
-  font-size: 24px;
+  font-size: var(--font-size-2xl);
   font-weight: 700;
+  margin-right: auto;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
 }
 
 .question-card-desc {
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
   background: var(--card-bg-secondary);
+  border-left: 4px solid var(--primary-color);
+  border-radius: var(--radius-md);
 }
 
 .question-card-desc-title {
   font-weight: 600;
-  font-size: 15px;
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
 }
 
 .question-card-body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .question-card {
+    max-width: 100%;
+  }
+
+  .question-card-header {
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .question-card-title {
+    font-size: var(--font-size-xl);
+    margin-right: 0;
+    width: 100%;
+  }
 }
 </style>

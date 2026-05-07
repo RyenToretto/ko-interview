@@ -1,6 +1,11 @@
 <template>
   <div class="css-runner">
     <div class="css-runner-header">
+      <span class="css-runner-traffic-lights" aria-hidden="true">
+        <span class="css-runner-traffic-light close"></span>
+        <span class="css-runner-traffic-light minimize"></span>
+        <span class="css-runner-traffic-light maximize"></span>
+      </span>
       <span class="css-runner-title">{{ title || 'CSS 在线练习' }}</span>
       <el-space>
         <el-button type="primary" size="small" @click="applyStyle">
@@ -74,22 +79,47 @@ function handleReset() {
 <style scoped>
 .css-runner {
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .css-runner-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   background: var(--code-header-bg);
   color: var(--code-text);
+  border-bottom: 1px solid var(--code-border);
 }
 
+.css-runner-traffic-lights {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.css-runner-traffic-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.25);
+}
+
+.css-runner-traffic-light.close { background: #ff5f56; }
+.css-runner-traffic-light.minimize { background: #ffbd2e; }
+.css-runner-traffic-light.maximize { background: #27c93f; }
+
 .css-runner-title {
-  font-size: 14px;
+  flex: 1;
+  font-size: var(--font-size-sm);
   font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 .css-runner-body {
@@ -113,16 +143,20 @@ function handleReset() {
 }
 
 .css-runner-pane-label {
-  padding: 4px 12px;
+  padding: var(--spacing-xs) var(--spacing-md);
   background: var(--code-output-bg);
   color: #a6adc8;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--code-border);
 }
 
 .css-runner-preview-area {
   flex: 1;
   position: relative;
+  background: #fff;
 }
 
 .css-runner-iframe {
@@ -131,5 +165,20 @@ function handleReset() {
   min-height: 260px;
   border: none;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .css-runner-body {
+    flex-direction: column;
+  }
+
+  .css-runner-editor-pane {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .css-runner-iframe {
+    min-height: 200px;
+  }
 }
 </style>
