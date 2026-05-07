@@ -397,6 +397,11 @@ const routes: RouteRecordRaw[] = [
       },
       // ========== 长沙前端面试 ==========
       {
+        path: 'changsha/jd',
+        name: 'ChangshaJD',
+        component: () => import('@/views/changsha/ChangshaJD.vue'),
+      },
+      {
         path: 'changsha/roadmap',
         name: 'ChangshaRoadmap',
         component: () => import('@/views/changsha/LearningRoadmap.vue'),
@@ -407,9 +412,24 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/changsha/ChangshaInterview.vue'),
       },
       {
-        path: 'changsha/resources',
-        name: 'ChangshaResources',
-        component: () => import('@/views/changsha/ResourceCollection.vue'),
+        path: 'changsha/miniapp',
+        name: 'ChangshaMiniApp',
+        component: () => import('@/views/changsha/ChangshaMiniApp.vue'),
+      },
+      {
+        path: 'changsha/nodejs',
+        name: 'ChangshaNodejs',
+        component: () => import('@/views/changsha/ChangshaNodejs.vue'),
+      },
+      {
+        path: 'changsha/datavis',
+        name: 'ChangshaDataVis',
+        component: () => import('@/views/changsha/ChangshaDataVis.vue'),
+      },
+      {
+        path: 'changsha/design-pattern',
+        name: 'ChangshaDesignPattern',
+        component: () => import('@/views/changsha/ChangshaDesignPattern.vue'),
       },
     ],
   },

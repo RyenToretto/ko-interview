@@ -1,0 +1,67 @@
+---
+description: 优质学习资源管理规范 - 所有资源必须统一在首页汇总
+globs:
+  - "src/views/**/*.vue"
+  - "src/config/resources.ts"
+  - "src/config/questions.ts"
+---
+
+# 优质学习资源管理规范
+
+## 核心原则
+
+**所有「优质学习资源」（视频/书籍/文档/工具/平台/教程/学习路线等）必须统一收纳在 [src/config/resources.ts](src/config/resources.ts) 中，并通过 [src/views/HomeView.vue](src/views/HomeView.vue) 在首页统一展示。**
+
+## 强制约束
+
+### 禁止行为
+
+- **禁止**在题目页面（如 `src/views/xxx/XxxResources.vue`）单独建「资源合集」tab 或独立页面
+- **禁止**在某个分类下建立纯资源类的子页面（如「优质书籍」「视频教程合集」）
+- **禁止**在 [src/config/questions.ts](src/config/questions.ts) 中添加纯资源型题目（type: qa 但内容只是资源链接）
+
+### 允许行为
+
+- 在题目页面中**引用**资源链接作为补充阅读（少量、点缀性）
+- 在学习路线页面（如 [src/views/changsha/LearningRoadmap.vue](src/views/changsha/LearningRoadmap.vue)）中按学习阶段穿插少量针对性资源链接
+- 新增资源时统一往 [src/config/resources.ts](src/config/resources.ts) 的对应 `ResourceGroup` 中追加
+
+## 数据结构
+
+```ts
+// src/config/resources.ts
+export interface Resource {
+  name: string   // 资源名称
+  desc: string   // 简要说明
+  meta?: string  // 元信息（讲师/评分/年份等）
+  url: string    // 链接（必须可点击新窗口打开）
+}
+
+export interface ResourceGroup {
+  id: string     // 唯一标识
+  title: string  // 分组标题
+  items: Resource[]
+}
+```
+
+## 现有资源分组
+
+- `videos` — 视频教程（B站免费）
+- `books` — 经典书籍
+- `docs` — 在线文档与教程
+- `platforms` — 刷题与面试平台
+- `tools` — 开发工具与效率
+
+## 新增资源流程
+
+1. 打开 [src/config/resources.ts](src/config/resources.ts)
+2. 找到合适的 `ResourceGroup`（或新增一个分组）
+3. 在 `items` 数组中添加新资源
+4. 首页会自动展示，无需修改 HomeView.vue
+
+## 例外情况
+
+如果某个分类（如「长沙前端面试」）确实需要展示**该分类专属的、与首页通用资源不重叠的**特殊资源，可以：
+
+- 在该分类的某个具体题目（如学习路线题）中作为该题的延展内容嵌入
+- 但**仍然不允许**单独建一个「XX 资源合集」tab

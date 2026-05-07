@@ -61,12 +61,46 @@
         </el-timeline-item>
       </el-timeline>
     </el-card>
+
+    <el-card class="home-view-resources">
+      <template #header>
+        <div class="home-view-resources-header">
+          <span class="home-view-resources-title">优质学习资源合集</span>
+          <span class="home-view-resources-subtitle">
+            精选高质量中文前端学习资源，所有链接可点击新窗口打开
+          </span>
+        </div>
+      </template>
+
+      <el-collapse v-model="activeGroups">
+        <el-collapse-item
+          v-for="group in resourceGroups"
+          :key="group.id"
+          :title="`${group.title}（${group.items.length}）`"
+          :name="group.id"
+        >
+          <el-table :data="group.items" size="small" border stripe>
+            <el-table-column prop="name" label="名称" min-width="200" />
+            <el-table-column prop="desc" label="说明" min-width="180" />
+            <el-table-column prop="meta" label="备注" width="120" />
+            <el-table-column label="链接" width="120">
+              <template #default="{ row }">
+                <a :href="row.url" target="_blank" rel="noopener" class="home-view-resource-link">
+                  打开
+                </a>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-collapse-item>
+      </el-collapse>
+    </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { categories } from '@/config/questions'
+import { resourceGroups } from '@/config/resources'
 
 const totalCount = computed(() =>
   categories.reduce((sum, cat) => sum + cat.questions.length, 0)
@@ -77,6 +111,8 @@ const codeCount = computed(() =>
 const qaCount = computed(() =>
   categories.reduce((sum, cat) => sum + cat.questions.filter(q => q.type === 'qa').length, 0)
 )
+
+const activeGroups = ref<string[]>(['videos', 'books'])
 </script>
 
 <style scoped>
@@ -142,10 +178,41 @@ const qaCount = computed(() =>
 
 .home-view-guide {
   margin-top: 8px;
+  margin-bottom: 24px;
 }
 
 .home-view-guide-title {
   font-size: 16px;
   font-weight: 600;
+}
+
+.home-view-resources {
+  margin-bottom: 24px;
+}
+
+.home-view-resources-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.home-view-resources-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.home-view-resources-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.home-view-resource-link {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.home-view-resource-link:hover {
+  opacity: 0.8;
 }
 </style>

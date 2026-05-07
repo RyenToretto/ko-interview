@@ -190,9 +190,13 @@ export const categories: QuestionCategory[] = [
     label: '长沙前端面试',
     icon: 'MapLocation',
     questions: [
+      { id: 'cs-jd', title: 'Boss 直聘 JD 汇总分析', type: 'qa', difficulty: 'easy', path: '/changsha/jd' },
       { id: 'cs-roadmap', title: '前端学习路线（小白到顶级）', type: 'qa', difficulty: 'easy', path: '/changsha/roadmap' },
       { id: 'cs-interview', title: '长沙前端高频面试题', type: 'qa', difficulty: 'medium', path: '/changsha/interview' },
-      { id: 'cs-resources', title: '优质学习资源合集', type: 'qa', difficulty: 'easy', path: '/changsha/resources' },
+      { id: 'cs-miniapp', title: '微信小程序与 uni-app', type: 'qa', difficulty: 'medium', path: '/changsha/miniapp' },
+      { id: 'cs-nodejs', title: 'Node.js 基础与 RESTful API', type: 'qa', difficulty: 'medium', path: '/changsha/nodejs' },
+      { id: 'cs-datavis', title: 'ECharts 与大屏可视化', type: 'qa', difficulty: 'medium', path: '/changsha/datavis' },
+      { id: 'cs-design-pattern', title: '设计模式与架构', type: 'qa', difficulty: 'hard', path: '/changsha/design-pattern' },
     ],
   },
 ]
