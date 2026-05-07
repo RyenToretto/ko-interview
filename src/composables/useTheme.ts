@@ -4,10 +4,10 @@ export type ThemeMode = 'light' | 'dark'
 export type SkinType = 'default' | 'apple' | 'hero'
 
 const theme = ref<ThemeMode>(
-  (localStorage.getItem('theme-mode') as ThemeMode) || 'dark'
+  (localStorage.getItem('theme-mode') as ThemeMode) || 'light'
 )
 const skin = ref<SkinType>(
-  (localStorage.getItem('theme-skin') as SkinType) || 'hero'
+  (localStorage.getItem('theme-skin') as SkinType) || 'apple'
 )
 
 function applyAll() {
