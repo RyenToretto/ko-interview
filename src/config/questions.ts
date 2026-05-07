@@ -185,4 +185,14 @@ export const categories: QuestionCategory[] = [
       { id: 'algo-common', title: '高频算法题', type: 'code', difficulty: 'medium', path: '/algorithm/common' },
     ],
   },
+  {
+    id: 'changsha',
+    label: '长沙前端面试',
+    icon: 'MapLocation',
+    questions: [
+      { id: 'cs-roadmap', title: '前端学习路线（小白到顶级）', type: 'qa', difficulty: 'easy', path: '/changsha/roadmap' },
+      { id: 'cs-interview', title: '长沙前端高频面试题', type: 'qa', difficulty: 'medium', path: '/changsha/interview' },
+      { id: 'cs-resources', title: '优质学习资源合集', type: 'qa', difficulty: 'easy', path: '/changsha/resources' },
+    ],
+  },
 ]

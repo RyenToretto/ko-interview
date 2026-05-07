@@ -107,7 +107,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { HomeFilled, Search, Sunny, Moon, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis } from '@element-plus/icons-vue'
+import { HomeFilled, Search, Sunny, Moon, Tickets, Brush, Coffee, Connection, Document, SetUp, ChromeFilled, Platform, Setting, Timer, Monitor, Link, DataAnalysis, MapLocation } from '@element-plus/icons-vue'
 import { categories } from '@/config/questions'
 import type { Difficulty } from '@/config/questions'
 import { useInterviewMode } from '@/composables/useInterviewMode'

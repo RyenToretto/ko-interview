@@ -395,6 +395,22 @@ const routes: RouteRecordRaw[] = [
         name: 'TsUtility',
         component: () => import('@/views/typescript/TypeUtility.vue'),
       },
+      // ========== 长沙前端面试 ==========
+      {
+        path: 'changsha/roadmap',
+        name: 'ChangshaRoadmap',
+        component: () => import('@/views/changsha/LearningRoadmap.vue'),
+      },
+      {
+        path: 'changsha/interview',
+        name: 'ChangshaInterview',
+        component: () => import('@/views/changsha/ChangshaInterview.vue'),
+      },
+      {
+        path: 'changsha/resources',
+        name: 'ChangshaResources',
+        component: () => import('@/views/changsha/ResourceCollection.vue'),
+      },
     ],
   },
 ]
